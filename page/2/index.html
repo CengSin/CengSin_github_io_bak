@@ -54,8 +54,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -110,8 +108,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -132,9 +128,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -393,19 +387,19 @@
 
 
   
-    <article id="post-2017-10-31-Spring学习日记3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2017-11-01-Spring学习日记5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/31/2017-10-31-Spring学习日记3/">Spring框架学习日记3：Spring配置文件</a>
+      <a class="article-title" href="/2017/10/31/2017-11-01-Spring学习日记5/">Spring框架学习日记5：Spring注入类型</a>
     </h1>
   
 
         
-        <a href="/2017/10/31/2017-10-31-Spring学习日记3/" class="archive-article-date">
+        <a href="/2017/10/31/2017-11-01-Spring学习日记5/" class="archive-article-date">
   	<time datetime="2017-10-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
 </a>
         
@@ -413,70 +407,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Spring框架学习日记3：Spring配置文件"><a href="#Spring框架学习日记3：Spring配置文件" class="headerlink" title="Spring框架学习日记3：Spring配置文件"></a>Spring框架学习日记3：Spring配置文件</h1><pre>
+        <h2 id="Spring框架学习日记5：Spring注入类型"><a href="#Spring框架学习日记5：Spring注入类型" class="headerlink" title="Spring框架学习日记5：Spring注入类型"></a>Spring框架学习日记5：Spring注入类型</h2><h3 id="Spring中的复杂类型注入"><a href="#Spring中的复杂类型注入" class="headerlink" title="Spring中的复杂类型注入"></a>Spring中的复杂类型注入</h3><h4 id="在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的-lt-bean-gt-表示一个特别的实例，由name属性或者id属性决定。"><a href="#在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的-lt-bean-gt-表示一个特别的实例，由name属性或者id属性决定。" class="headerlink" title="在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的&lt;bean&gt;表示一个特别的实例，由name属性或者id属性决定。"></a>在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的&lt;bean&gt;表示一个特别的实例，由name属性或者id属性决定。</h4><pre>
 
-&lt;!-- 将Bean对象交给Spring对象管理 --&gt;
-    * id: 为bean标签起一个名字，在约束中采用ID的约束：唯一
-        * 必须以字母开头，可以使用字母，数字，连字符，下划线，句号，冒号
-        * id中不能出现特殊字符
-    * name: 为bean标签起一个名字，没有采用ID的约束
-        * name：允许出现特殊字符
-        * 如果没有id的话，name可以当作ID使用
-        * 尽量使用name属性 
-    * class: 被管理对象的完整类名
-    &lt;bean name="user" class="info.zetile.domain.User"&gt;&lt;/bean&gt;
+&lt;beans&gt;
+
+&lt;bean name="标签名" class="类的全类名"&gt;
+    &lt;!-- 设置初始化时如果初始化对象的值是另外一个对象时，应该使用ref属性而不是value属性 --&gt;
+    &lt;property name="属性名" value="属性值"&gt;
+    &lt;/property&gt;
+
+&lt;/bean&gt;
+
+&lt;/beans&gt;
 
 </pre>
 
-<h3 id="Spring创建对象的方式"><a href="#Spring创建对象的方式" class="headerlink" title="Spring创建对象的方式"></a>Spring创建对象的方式</h3><ul>
-<li>空参构造的方式</li>
-</ul>
-<p>在JavaBean中添加一个无参数的构造方法，其中可以添加一条输出语句来更直观的体现此构造方法。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象-空参构造方式.png" alt="Spring创建对象-空参构造方式"></p>
 <ul>
-<li>静态工厂（代理）：</li>
+<li>要求初始化的对象类型</li>
 </ul>
-<p>首先添加一个工厂类UserFactory，在其中添加一个静态方法createUser用来获取User类型的实例对象。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象静态工厂.png" alt="Spring创建对象静态工厂"> </p>
-<p>之后在applicationContext.xml（Spring配置文件中添加如下代码）</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring静态代理配置.png" alt="Spring静态代理配置"></p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring中要求初始化的对象类型.png" alt="Spring中要求初始化的对象类型.png"></p>
 <ul>
-<li>实例工厂（动态代理）</li>
+<li>数组，List单值注入</li>
 </ul>
-<p>首先在工厂类中添加一个成员方法createUser2用来获取对象实例</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring动态代理方法.png" alt="Spring动态代理方法"></p>
-<p>之后在applicationContext.xml中配置 </p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring动态代理配置文件.png" alt="Spring动态代理配置文件"></p>
-<p>最后一次运行结果：</p>
-<p>我们只使用了实例工厂的配置，却创建了三个对象，由此可知ApplicationContext容器在启动时就会创建所有配置过的对象。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象运行结果.png" alt="运行结果"></p>
-<h3 id="Spring的分模块配置"><a href="#Spring的分模块配置" class="headerlink" title="Spring的分模块配置"></a>Spring的分模块配置</h3><p>在Spring的配置文件中可以引用其他配置文件，这也被称为Spring的分模块配置。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中导入其他配置文件.png" alt="Spring中导入其他配置文件"></p>
-<h3 id="Spring配置文件中Scope属性的取值与意义："><a href="#Spring配置文件中Scope属性的取值与意义：" class="headerlink" title="Spring配置文件中Scope属性的取值与意义："></a>Spring配置文件中Scope属性的取值与意义：</h3><h4 id="scope-’singleton’"><a href="#scope-’singleton’" class="headerlink" title="scope=’singleton’"></a>scope=’singleton’</h4><p>表示单例模式，此时由Spring只能创建一个指定对象，这个也是scope的默认值。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中scopre配置单例模式.png" alt="Spring中scopre配置单例模式.png"></p>
-<p>测试代码：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring单例模式运行代码.png" alt="Spring单例模式运行代码.png"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring单例模式运行结果.png" alt="Spring单例模式运行结果.png"></p>
-<h4 id="scope-’prototype’"><a href="#scope-’prototype’" class="headerlink" title="scope=’prototype’"></a>scope=’prototype’</h4><p>表示多例模式，此时spring可以创建多个相同类型的对象。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中scope配置多例模式.png" alt="Spring中scope配置多例模式.png"></p>
-<p>测试代码：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中多例模式运行代码.png" alt="Spring中多例模式运行代码.png"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring多例模式运行结果.png" alt="Spring多例模式运行结果.png"></p>
-<h4 id="scope-’request’"><a href="#scope-’request’" class="headerlink" title="scope=’request’"></a>scope=’request’</h4><p>表示web环境下，对象与request生命周期一致。</p>
-<h4 id="scope-’session’"><a href="#scope-’session’" class="headerlink" title="scope=’session’"></a>scope=’session’</h4><p>表示web环境下，对象与session生命周期一致。</p>
-<h3 id="Spring配置文件中的生命周期属性："><a href="#Spring配置文件中的生命周期属性：" class="headerlink" title="Spring配置文件中的生命周期属性："></a>Spring配置文件中的生命周期属性：</h3><ul>
-<li>init-method:</li>
-</ul>
-<p>在JavaBean中配置一个方法作为声明周期的初始化方法，spring在创建对象之后会立即调用。</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入单值.png" alt="Spring复杂类型注入单值.png"></p>
 <ul>
-<li>destory-method:</li>
+<li>数组多值注入</li>
 </ul>
-<p>在JavaBean中配置一个方法作为生命周期的校徽方法，spring在关闭并销毁容器中所有对象之前调用此方法。</p>
-<h4 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring中对象生命周期配置文件.png" alt="Spring中对象生命周期配置文件.png"></p>
-<h4 id="测试代码："><a href="#测试代码：" class="headerlink" title="测试代码："></a>测试代码：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring对象生命周期测试代码.png" alt="Spring对象生命周期测试代码.png"></p>
-<h4 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring对象生命周期测试结果.png" alt="Spring对象生命周期测试结果.png"></p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入多值_数组.png" alt="Spring复杂类型注入多值_数组.png"></p>
+<ul>
+<li>List多值注入</li>
+</ul>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring多值注入list.png" alt="Spring多值注入list.png"></p>
+<ul>
+<li>Map多值注入</li>
+</ul>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring多值注入map.png" alt="Spring多值注入map.png"></p>
+<ul>
+<li>Properties类型多值注入</li>
+</ul>
+<p><img src="http://otyhab281.bkt.clouddn.com/SPring中Property注入.png" alt="SPring中Property注入.png"></p>
+<ul>
+<li>运行结果：</li>
+</ul>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入运行结果.png" alt="Spring复杂类型注入运行结果.png"></p>
 
       
 
@@ -511,7 +484,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/31/2017-10-31-Spring学习日记3/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/10/31/2017-11-01-Spring学习日记5/">展开全文 >></a>
         </p>
       
 
@@ -687,6 +660,154 @@ public class Demo {
 
 
   
+    <article id="post-2017-10-31-Spring学习日记3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/2017-10-31-Spring学习日记3/">Spring框架学习日记3：Spring配置文件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/2017-10-31-Spring学习日记3/" class="archive-article-date">
+  	<time datetime="2017-10-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring框架学习日记3：Spring配置文件"><a href="#Spring框架学习日记3：Spring配置文件" class="headerlink" title="Spring框架学习日记3：Spring配置文件"></a>Spring框架学习日记3：Spring配置文件</h1><pre>
+
+&lt;!-- 将Bean对象交给Spring对象管理 --&gt;
+    * id: 为bean标签起一个名字，在约束中采用ID的约束：唯一
+        * 必须以字母开头，可以使用字母，数字，连字符，下划线，句号，冒号
+        * id中不能出现特殊字符
+    * name: 为bean标签起一个名字，没有采用ID的约束
+        * name：允许出现特殊字符
+        * 如果没有id的话，name可以当作ID使用
+        * 尽量使用name属性 
+    * class: 被管理对象的完整类名
+    &lt;bean name="user" class="info.zetile.domain.User"&gt;&lt;/bean&gt;
+
+</pre>
+
+<h3 id="Spring创建对象的方式"><a href="#Spring创建对象的方式" class="headerlink" title="Spring创建对象的方式"></a>Spring创建对象的方式</h3><ul>
+<li>空参构造的方式</li>
+</ul>
+<p>在JavaBean中添加一个无参数的构造方法，其中可以添加一条输出语句来更直观的体现此构造方法。</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象-空参构造方式.png" alt="Spring创建对象-空参构造方式"></p>
+<ul>
+<li>静态工厂（代理）：</li>
+</ul>
+<p>首先添加一个工厂类UserFactory，在其中添加一个静态方法createUser用来获取User类型的实例对象。</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象静态工厂.png" alt="Spring创建对象静态工厂"> </p>
+<p>之后在applicationContext.xml（Spring配置文件中添加如下代码）</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring静态代理配置.png" alt="Spring静态代理配置"></p>
+<ul>
+<li>实例工厂（动态代理）</li>
+</ul>
+<p>首先在工厂类中添加一个成员方法createUser2用来获取对象实例</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring动态代理方法.png" alt="Spring动态代理方法"></p>
+<p>之后在applicationContext.xml中配置 </p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring动态代理配置文件.png" alt="Spring动态代理配置文件"></p>
+<p>最后一次运行结果：</p>
+<p>我们只使用了实例工厂的配置，却创建了三个对象，由此可知ApplicationContext容器在启动时就会创建所有配置过的对象。</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象运行结果.png" alt="运行结果"></p>
+<h3 id="Spring的分模块配置"><a href="#Spring的分模块配置" class="headerlink" title="Spring的分模块配置"></a>Spring的分模块配置</h3><p>在Spring的配置文件中可以引用其他配置文件，这也被称为Spring的分模块配置。</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring中导入其他配置文件.png" alt="Spring中导入其他配置文件"></p>
+<h3 id="Spring配置文件中Scope属性的取值与意义："><a href="#Spring配置文件中Scope属性的取值与意义：" class="headerlink" title="Spring配置文件中Scope属性的取值与意义："></a>Spring配置文件中Scope属性的取值与意义：</h3><h4 id="scope-’singleton’"><a href="#scope-’singleton’" class="headerlink" title="scope=’singleton’"></a>scope=’singleton’</h4><p>表示单例模式，此时由Spring只能创建一个指定对象，这个也是scope的默认值。</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring中scopre配置单例模式.png" alt="Spring中scopre配置单例模式.png"></p>
+<p>测试代码：</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring单例模式运行代码.png" alt="Spring单例模式运行代码.png"></p>
+<p>运行结果：</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring单例模式运行结果.png" alt="Spring单例模式运行结果.png"></p>
+<h4 id="scope-’prototype’"><a href="#scope-’prototype’" class="headerlink" title="scope=’prototype’"></a>scope=’prototype’</h4><p>表示多例模式，此时spring可以创建多个相同类型的对象。</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring中scope配置多例模式.png" alt="Spring中scope配置多例模式.png"></p>
+<p>测试代码：</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring中多例模式运行代码.png" alt="Spring中多例模式运行代码.png"></p>
+<p>运行结果：</p>
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring多例模式运行结果.png" alt="Spring多例模式运行结果.png"></p>
+<h4 id="scope-’request’"><a href="#scope-’request’" class="headerlink" title="scope=’request’"></a>scope=’request’</h4><p>表示web环境下，对象与request生命周期一致。</p>
+<h4 id="scope-’session’"><a href="#scope-’session’" class="headerlink" title="scope=’session’"></a>scope=’session’</h4><p>表示web环境下，对象与session生命周期一致。</p>
+<h3 id="Spring配置文件中的生命周期属性："><a href="#Spring配置文件中的生命周期属性：" class="headerlink" title="Spring配置文件中的生命周期属性："></a>Spring配置文件中的生命周期属性：</h3><ul>
+<li>init-method:</li>
+</ul>
+<p>在JavaBean中配置一个方法作为声明周期的初始化方法，spring在创建对象之后会立即调用。</p>
+<ul>
+<li>destory-method:</li>
+</ul>
+<p>在JavaBean中配置一个方法作为生命周期的校徽方法，spring在关闭并销毁容器中所有对象之前调用此方法。</p>
+<h4 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring中对象生命周期配置文件.png" alt="Spring中对象生命周期配置文件.png"></p>
+<h4 id="测试代码："><a href="#测试代码：" class="headerlink" title="测试代码："></a>测试代码：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring对象生命周期测试代码.png" alt="Spring对象生命周期测试代码.png"></p>
+<h4 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring对象生命周期测试结果.png" alt="Spring对象生命周期测试结果.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring学习日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/2017-10-31-Spring学习日记3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2017-10-31-Spring学习日记2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -784,133 +905,6 @@ public class Demo {
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/10/31/2017-10-31-Spring学习日记2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2017-11-01-Spring学习日记5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/31/2017-11-01-Spring学习日记5/">Spring框架学习日记5：Spring注入类型</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/31/2017-11-01-Spring学习日记5/" class="archive-article-date">
-  	<time datetime="2017-10-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Spring框架学习日记5：Spring注入类型"><a href="#Spring框架学习日记5：Spring注入类型" class="headerlink" title="Spring框架学习日记5：Spring注入类型"></a>Spring框架学习日记5：Spring注入类型</h2><h3 id="Spring中的复杂类型注入"><a href="#Spring中的复杂类型注入" class="headerlink" title="Spring中的复杂类型注入"></a>Spring中的复杂类型注入</h3><h4 id="在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的-lt-bean-gt-表示一个特别的实例，由name属性或者id属性决定。"><a href="#在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的-lt-bean-gt-表示一个特别的实例，由name属性或者id属性决定。" class="headerlink" title="在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的&lt;bean&gt;表示一个特别的实例，由name属性或者id属性决定。"></a>在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的&lt;bean&gt;表示一个特别的实例，由name属性或者id属性决定。</h4><pre>
-
-&lt;beans&gt;
-
-&lt;bean name="标签名" class="类的全类名"&gt;
-    &lt;!-- 设置初始化时如果初始化对象的值是另外一个对象时，应该使用ref属性而不是value属性 --&gt;
-    &lt;property name="属性名" value="属性值"&gt;
-    &lt;/property&gt;
-
-&lt;/bean&gt;
-
-&lt;/beans&gt;
-
-</pre>
-
-<ul>
-<li>要求初始化的对象类型</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中要求初始化的对象类型.png" alt="Spring中要求初始化的对象类型.png"></p>
-<ul>
-<li>数组，List单值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入单值.png" alt="Spring复杂类型注入单值.png"></p>
-<ul>
-<li>数组多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入多值_数组.png" alt="Spring复杂类型注入多值_数组.png"></p>
-<ul>
-<li>List多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring多值注入list.png" alt="Spring多值注入list.png"></p>
-<ul>
-<li>Map多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring多值注入map.png" alt="Spring多值注入map.png"></p>
-<ul>
-<li>Properties类型多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/SPring中Property注入.png" alt="SPring中Property注入.png"></p>
-<ul>
-<li>运行结果：</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入运行结果.png" alt="Spring复杂类型注入运行结果.png"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring学习日记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/31/2017-11-01-Spring学习日记5/">展开全文 >></a>
         </p>
       
 
@@ -1886,15 +1880,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">小记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">千字文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1910,15 +1904,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">小记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">想拒绝的事情</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DbUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1938,15 +1932,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
               </li>
              
               <li class="article-tag-list-item">

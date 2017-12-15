@@ -54,8 +54,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -110,8 +108,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -132,9 +128,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -694,98 +688,6 @@
 
 
   
-    <article id="post-2017-08-01-在开发中如何防止SQL注入攻击" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/01/2017-08-01-在开发中如何防止SQL注入攻击/">如何在开发中避免SQL注入</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/01/2017-08-01-在开发中如何防止SQL注入攻击/" class="archive-article-date">
-  	<time datetime="2017-07-31T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="如何避免SQL注入攻击"><a href="#如何避免SQL注入攻击" class="headerlink" title="如何避免SQL注入攻击"></a>如何避免SQL注入攻击</h1><p>可以使用Statement中的子接口实现类PreparedStatement来避免SQL注入攻击</p>
-<h2 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h2><p>表示预编译的SQL语句的对象，Sql语句是预编译的，并且存储在<code>PreparedStatement</code>对象中，这个对象可以多次有效的执行这个SQL语句。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PreparedStatementDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String className = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String password = <span class="string">"123"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String user = <span class="string">"root"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String url = <span class="string">"jdbc:mysql://localhost:3306/mydb"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		Class.forName(className);</span><br><span class="line">		<span class="comment">//获取连接数据库的对象</span></span><br><span class="line">		Connection conn =  DriverManager.getConnection(url, user, password);</span><br><span class="line">		String sql = <span class="string">"SELECT * FROM userInfo WHERE username=? AND password=?"</span>;</span><br><span class="line">		<span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">		PreparedStatement pst = conn.prepareStatement(sql);</span><br><span class="line">		pst.setString(<span class="number">1</span>, <span class="string">"zhangsan"</span>);</span><br><span class="line">		pst.setString(<span class="number">2</span>, <span class="string">"123456"</span>);</span><br><span class="line">		</span><br><span class="line">		ResultSet rs = pst.executeQuery();</span><br><span class="line">		System.out.println(<span class="string">"用户名\t密码"</span>);</span><br><span class="line">		<span class="keyword">while</span>(rs.next()) &#123;</span><br><span class="line">			System.out.println(rs.getString(<span class="string">"username"</span>) + <span class="string">"\t"</span> + rs.getString(<span class="string">"password"</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		rs.close();</span><br><span class="line">		pst.close();</span><br><span class="line">		conn.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上面的代码里，<code>?</code>表示的是占位符，不再像<code>Statement</code>中那样直接使用变量</p>
-<p>再后来的setXXX的时候XXX的类型要与数据库中的类型相一致， 否则会出错。</p>
-<p>同时使用<code>PreparedStatement</code>之后不再向executeXXX()传递SQL语句参数。</p>
-<h2 id="使用PreparedStatement为数据表中新增一条数据"><a href="#使用PreparedStatement为数据表中新增一条数据" class="headerlink" title="使用PreparedStatement为数据表中新增一条数据"></a>使用<code>PreparedStatement</code>为数据表中新增一条数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sql = <span class="string">"INSERT INTO userInfo(username, password) VALUES(?, ?)"</span>;</span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">String usernameStr = in.nextLine();</span><br><span class="line">String passwordStr = in.nextLine();</span><br><span class="line">pst = conn.prepareStatement(sql);</span><br><span class="line">pst.setString(<span class="number">1</span>, usernameStr);</span><br><span class="line">pst.setString(<span class="number">2</span>, passwordStr);</span><br><span class="line"><span class="keyword">int</span> len = pst.executeUpdate();</span><br><span class="line">System.out.println(<span class="string">"修改了"</span>+len+<span class="string">"条数据！"</span>);</span><br><span class="line">sql = <span class="string">"	SELECT * FROM userInfo"</span>;</span><br><span class="line">pst = conn.prepareStatement(sql);</span><br><span class="line">rs =  pst.executeQuery();</span><br><span class="line">System.out.println(<span class="string">"用户名\t密码"</span>);</span><br><span class="line"><span class="keyword">while</span>(rs.next()) &#123;</span><br><span class="line">    System.out.println(rs.getString(<span class="string">"username"</span>) + <span class="string">"\t"</span> + rs.getString(<span class="string">"password"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://otyhab281.bkt.clouddn.com/2017-08-01-preparedStatement.PNG" alt="afterRun"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SQL注入攻击</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/01/2017-08-01-在开发中如何防止SQL注入攻击/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-2017-08-01-SQL注入攻击" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -918,6 +820,98 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/01/2017-08-01-SQL注入攻击/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2017-08-01-在开发中如何防止SQL注入攻击" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/01/2017-08-01-在开发中如何防止SQL注入攻击/">如何在开发中避免SQL注入</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/01/2017-08-01-在开发中如何防止SQL注入攻击/" class="archive-article-date">
+  	<time datetime="2017-07-31T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="如何避免SQL注入攻击"><a href="#如何避免SQL注入攻击" class="headerlink" title="如何避免SQL注入攻击"></a>如何避免SQL注入攻击</h1><p>可以使用Statement中的子接口实现类PreparedStatement来避免SQL注入攻击</p>
+<h2 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h2><p>表示预编译的SQL语句的对象，Sql语句是预编译的，并且存储在<code>PreparedStatement</code>对象中，这个对象可以多次有效的执行这个SQL语句。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PreparedStatementDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String className = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String password = <span class="string">"123"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String user = <span class="string">"root"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String url = <span class="string">"jdbc:mysql://localhost:3306/mydb"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		Class.forName(className);</span><br><span class="line">		<span class="comment">//获取连接数据库的对象</span></span><br><span class="line">		Connection conn =  DriverManager.getConnection(url, user, password);</span><br><span class="line">		String sql = <span class="string">"SELECT * FROM userInfo WHERE username=? AND password=?"</span>;</span><br><span class="line">		<span class="comment">//获取SQL语句执行对象</span></span><br><span class="line">		PreparedStatement pst = conn.prepareStatement(sql);</span><br><span class="line">		pst.setString(<span class="number">1</span>, <span class="string">"zhangsan"</span>);</span><br><span class="line">		pst.setString(<span class="number">2</span>, <span class="string">"123456"</span>);</span><br><span class="line">		</span><br><span class="line">		ResultSet rs = pst.executeQuery();</span><br><span class="line">		System.out.println(<span class="string">"用户名\t密码"</span>);</span><br><span class="line">		<span class="keyword">while</span>(rs.next()) &#123;</span><br><span class="line">			System.out.println(rs.getString(<span class="string">"username"</span>) + <span class="string">"\t"</span> + rs.getString(<span class="string">"password"</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		rs.close();</span><br><span class="line">		pst.close();</span><br><span class="line">		conn.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码里，<code>?</code>表示的是占位符，不再像<code>Statement</code>中那样直接使用变量</p>
+<p>再后来的setXXX的时候XXX的类型要与数据库中的类型相一致， 否则会出错。</p>
+<p>同时使用<code>PreparedStatement</code>之后不再向executeXXX()传递SQL语句参数。</p>
+<h2 id="使用PreparedStatement为数据表中新增一条数据"><a href="#使用PreparedStatement为数据表中新增一条数据" class="headerlink" title="使用PreparedStatement为数据表中新增一条数据"></a>使用<code>PreparedStatement</code>为数据表中新增一条数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sql = <span class="string">"INSERT INTO userInfo(username, password) VALUES(?, ?)"</span>;</span><br><span class="line">Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">String usernameStr = in.nextLine();</span><br><span class="line">String passwordStr = in.nextLine();</span><br><span class="line">pst = conn.prepareStatement(sql);</span><br><span class="line">pst.setString(<span class="number">1</span>, usernameStr);</span><br><span class="line">pst.setString(<span class="number">2</span>, passwordStr);</span><br><span class="line"><span class="keyword">int</span> len = pst.executeUpdate();</span><br><span class="line">System.out.println(<span class="string">"修改了"</span>+len+<span class="string">"条数据！"</span>);</span><br><span class="line">sql = <span class="string">"	SELECT * FROM userInfo"</span>;</span><br><span class="line">pst = conn.prepareStatement(sql);</span><br><span class="line">rs =  pst.executeQuery();</span><br><span class="line">System.out.println(<span class="string">"用户名\t密码"</span>);</span><br><span class="line"><span class="keyword">while</span>(rs.next()) &#123;</span><br><span class="line">    System.out.println(rs.getString(<span class="string">"username"</span>) + <span class="string">"\t"</span> + rs.getString(<span class="string">"password"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://otyhab281.bkt.clouddn.com/2017-08-01-preparedStatement.PNG" alt="afterRun"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SQL注入攻击</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/01/2017-08-01-在开发中如何防止SQL注入攻击/">展开全文 >></a>
         </p>
       
 
@@ -1356,15 +1350,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">小记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">千字文</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1380,15 +1374,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">小记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">想拒绝的事情</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DbUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1408,15 +1402,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
               </li>
              
               <li class="article-tag-list-item">
