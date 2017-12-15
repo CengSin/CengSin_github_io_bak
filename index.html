@@ -314,6 +314,121 @@
 
 
   
+    <article id="post-Linux服务器安装ArangoDB数据库(CentOS7)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/01/Linux服务器安装ArangoDB数据库(CentOS7)/">Linux服务器安装ArangoDB</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/01/Linux服务器安装ArangoDB数据库(CentOS7)/" class="archive-article-date">
+  	<time datetime="2017-11-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux服务器安装ArangoDB数据库："><a href="#Linux服务器安装ArangoDB数据库：" class="headerlink" title="Linux服务器安装ArangoDB数据库："></a>Linux服务器安装ArangoDB数据库：</h2><ul>
+<li>系统环境：（CentOS Linux release 7.2.1511 (Core)）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载<a href="https://www.arangodb.com/download-arangodb-enterprise/install-enterprise/?utm_medium=email&amp;_hsenc=p2ANqtz-_IjBZzMJJABJPXaycqSIGRFbQWtbc9vUjrl7kGT6nrdJ2WbRAKPfzo6xhNzsnSOQjRpU9hVQmb39uz7dZ6pY_MkFd_hQ&amp;_hsmi=58567801&amp;utm_content=58567801&amp;utm_source=hs_automation&amp;hsCtaTracking=ec11ec27-e034-413c-b8c1-099b61c2c002%7Cdec4f183-ba27-4db5-a9ff-be8371297bc7" target="_blank" rel="noopener">rpm安装包</a></li>
+<li>安装rpm安装包命令：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -i arangodb3e-3.2.8-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装完成之后查询<code>ArangoDB</code>状态</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status arangodb3</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB状态查询.png" alt="ArangoDB状态查询.png"></p>
+<ul>
+<li><code>ArangoDB</code>在<code>Teminal</code>访问数据命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arangosh</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB查看数据库.png" alt="ArangoDB查看数据库.png"></p>
+<ul>
+<li>设置服务器IP</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/arangodb3/arangod.conf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在其中添加服务器IP</span></span><br><span class="line">endpoint = tcp://IPAddress:port</span><br><span class="line"><span class="meta">#</span><span class="bash"> 保存退出</span></span><br><span class="line">sudo vim /etc/arangodb3/arangosh.conf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在其中添加服务器IP</span></span><br><span class="line">endpoint = tcp://IPAddress:port</span><br><span class="line"><span class="meta">#</span><span class="bash"> 保存之后重启ArangoDB</span></span><br><span class="line">systemctl restart arangodb3</span><br></pre></td></tr></table></figure>
+<p>之后就可以通过输入网址进行管理ArangoDB了。</p>
+<hr>
+
+<p>CentOS7安装时会自动生成一个root用户和密码，如密码忘记或者没有记住的话可以进行以下操作来重新设置密码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop arangodb3 # 关闭服务器</span><br><span class="line">arango-secure-installation # 可以免密码进入web界面</span><br></pre></td></tr></table></figure>
+<p>进入web界面之后修改密码，保存退出，重启服务即可。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ArangoDB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/01/Linux服务器安装ArangoDB数据库(CentOS7)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2017-12-01-ArangoDB使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -510,121 +625,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/01/2017-12-01-ArangoDB使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux服务器安装ArangoDB数据库(CentOS7)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/01/Linux服务器安装ArangoDB数据库(CentOS7)/">Linux服务器安装ArangoDB</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/01/Linux服务器安装ArangoDB数据库(CentOS7)/" class="archive-article-date">
-  	<time datetime="2017-11-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux服务器安装ArangoDB数据库："><a href="#Linux服务器安装ArangoDB数据库：" class="headerlink" title="Linux服务器安装ArangoDB数据库："></a>Linux服务器安装ArangoDB数据库：</h2><ul>
-<li>系统环境：（CentOS Linux release 7.2.1511 (Core)）</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载<a href="https://www.arangodb.com/download-arangodb-enterprise/install-enterprise/?utm_medium=email&amp;_hsenc=p2ANqtz-_IjBZzMJJABJPXaycqSIGRFbQWtbc9vUjrl7kGT6nrdJ2WbRAKPfzo6xhNzsnSOQjRpU9hVQmb39uz7dZ6pY_MkFd_hQ&amp;_hsmi=58567801&amp;utm_content=58567801&amp;utm_source=hs_automation&amp;hsCtaTracking=ec11ec27-e034-413c-b8c1-099b61c2c002%7Cdec4f183-ba27-4db5-a9ff-be8371297bc7" target="_blank" rel="noopener">rpm安装包</a></li>
-<li>安装rpm安装包命令：</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -i arangodb3e-3.2.8-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装完成之后查询<code>ArangoDB</code>状态</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status arangodb3</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB状态查询.png" alt="ArangoDB状态查询.png"></p>
-<ul>
-<li><code>ArangoDB</code>在<code>Teminal</code>访问数据命令</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arangosh</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB查看数据库.png" alt="ArangoDB查看数据库.png"></p>
-<ul>
-<li>设置服务器IP</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/arangodb3/arangod.conf</span><br><span class="line"><span class="meta">#</span> 在其中添加服务器IP</span><br><span class="line">endpoint = tcp://IPAddress:port</span><br><span class="line"><span class="meta">#</span> 保存退出</span><br><span class="line">sudo vim /etc/arangodb3/arangosh.conf</span><br><span class="line"><span class="meta">#</span> 在其中添加服务器IP</span><br><span class="line">endpoint = tcp://IPAddress:port</span><br><span class="line"><span class="meta">#</span> 保存之后重启ArangoDB</span><br><span class="line">systemctl restart arangodb3</span><br></pre></td></tr></table></figure>
-<p>之后就可以通过输入网址进行管理ArangoDB了。</p>
-<hr>
-
-<p>CentOS7安装时会自动生成一个root用户和密码，如密码忘记或者没有记住的话可以进行以下操作来重新设置密码：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop arangodb3 # 关闭服务器</span><br><span class="line">arango-secure-installation # 可以免密码进入web界面</span><br></pre></td></tr></table></figure>
-<p>进入web界面之后修改密码，保存退出，重启服务即可。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ArangoDB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/01/Linux服务器安装ArangoDB数据库(CentOS7)/">展开全文 >></a>
         </p>
       
 
@@ -1909,6 +1909,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1929,10 +1933,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
@@ -1949,15 +1949,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
               </li>
              
               <li class="article-tag-list-item">
