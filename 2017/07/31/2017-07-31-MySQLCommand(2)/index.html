@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://otyhab281.bkt.clouddn.com/2017-07-31-MySQL-GroupBy.PNG">
 <meta property="og:image" content="http://otyhab281.bkt.clouddn.com/2017-07-31-MySQL-Having.PNG">
 <meta property="og:image" content="http://otyhab281.bkt.clouddn.com/2017-08-24-rollback.PNG">
-<meta property="og:updated_time" content="2017-11-29T08:43:58.114Z">
+<meta property="og:updated_time" content="2017-12-17T07:51:37.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习使用MYSQL(2)">
 <meta name="twitter:description" content="今天学习的总结">
@@ -178,7 +178,7 @@
         <h1 id="关于MySQL中的操作学习"><a href="#关于MySQL中的操作学习" class="headerlink" title="关于MySQL中的操作学习"></a>关于MySQL中的操作学习</h1><h2 id="1-查询语句"><a href="#1-查询语句" class="headerlink" title="1. 查询语句"></a>1. 查询语句</h2><blockquote>
 <p>查询语句是SQL学习过程中很重要也很基础的一部分，他可以帮助你获取到数据库中你需要的各种数据，当结合其他语句的时候功能尤其强大。</p>
 </blockquote>
-<h3 id="查询语句的使用格式"><a href="#查询语句的使用格式" class="headerlink" title="查询语句的使用格式"></a>查询语句的使用格式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*查询指定字段的值*/</span></span><br><span class="line"><span class="keyword">SELECT</span> columnName …… <span class="keyword">FROM</span> tableName;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*查询所有字段的值的时候*/</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tableName;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Select语句中的去重关键字*/</span></span><br><span class="line">DISTINCT</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> columnName <span class="keyword">FROM</span> tableName;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*在查询指定字段时为结果的字段重新赋值*/</span></span><br><span class="line"><span class="keyword">SELECT</span> columnName <span class="keyword">AS</span> <span class="string">'new-column-name'</span> <span class="keyword">FROM</span> tableName;</span><br><span class="line"><span class="comment">/*下图中查询的是score字段， 我们为它临时赋值了新的字段名：newScore*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询语句的使用格式"><a href="#查询语句的使用格式" class="headerlink" title="查询语句的使用格式"></a>查询语句的使用格式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*查询指定字段的值*/</span></span><br><span class="line"><span class="keyword">SELECT</span> columnName …… <span class="keyword">FROM</span> tableName;</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*查询所有字段的值的时候*/</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tableName;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Select语句中的去重关键字*/</span></span><br><span class="line">DISTINCT</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> columnName <span class="keyword">FROM</span> tableName;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*在查询指定字段时为结果的字段重新赋值*/</span></span><br><span class="line"><span class="keyword">SELECT</span> columnName <span class="keyword">AS</span> <span class="string">'new-column-name'</span> <span class="keyword">FROM</span> tableName;</span><br><span class="line"><span class="comment">/*下图中查询的是score字段， 我们为它临时赋值了新的字段名：newScore*/</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://otyhab281.bkt.clouddn.com/2017-07-31-MySQL-%E4%B8%B4%E6%97%B6%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D.PNG" alt="AS"><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*在Select语句中直接对计算结果进行简单的计算操作*/</span></span><br><span class="line"><span class="keyword">SELECT</span> score+<span class="number">100</span> <span class="keyword">FROM</span> tableName;</span><br></pre></td></tr></table></figure></p>
 <p><img src="http://otyhab281.bkt.clouddn.com/2017-07-31-MySQL-%E4%B8%B4%E6%97%B6%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D_2.PNG" alt="left"><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*SQL语句中筛选数据时所使用的一些关键字*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--比较运算符</span></span><br><span class="line">BETWEEN …… AND ……       <span class="comment">--在两约束之间存在的数据</span></span><br><span class="line">LIKE                    <span class="comment">--模糊查询，like语句中有两个试用的通配符</span></span><br><span class="line">    %                   <span class="comment">--用来匹配多个字符，例如a%表示有一个或者多个a</span></span><br><span class="line">    _                   <span class="comment">--用来匹配单个字符，例如 a_表示有两个a</span></span><br><span class="line">&gt; &lt; &lt;&gt; &gt;= &lt;=            --大于 小于 不等于 大于等于 小于等于</span><br><span class="line">IN(<span class="keyword">set</span>)                 <span class="comment">--表示选择在IN列表区间的值</span></span><br><span class="line"><span class="keyword">IS</span> <span class="literal">NULL</span>                 <span class="comment">--表示是否为空</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--逻辑运算符</span></span><br><span class="line"><span class="keyword">AND</span>                     <span class="comment">--与  两个或者两个以上的条件同时成立</span></span><br><span class="line"><span class="keyword">OR</span>                      <span class="comment">--或  一个以上的条件中有一个成立就立</span></span><br><span class="line"><span class="keyword">NOT</span>                     <span class="comment">--非  将判断结果取反</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*对结果进行排序需要用到下面关键字*/</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> columnName <span class="keyword">ASC</span>/<span class="keyword">DESC</span>;</span><br><span class="line">ASC         <span class="comment">--表示将结果升序排列</span></span><br><span class="line">DESC        <span class="comment">--表示将结果降序排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*SQL语句中的聚合函数，用来操作相关字段中所有值*/</span></span><br><span class="line">COUNT(columnName)       <span class="comment">--表示计算该列有多少行数据</span></span><br><span class="line">SUM(columnName)         <span class="comment">--计算该列中数值的总和(该列不是数字的话值为0)</span></span><br><span class="line">MAX(columnName)         <span class="comment">--选出该列中数值最大的值</span></span><br><span class="line">MIN(columnName)         <span class="comment">--选出该列中数值最小的值</span></span><br><span class="line">AVG(columnName)         <span class="comment">--计算该列的平均值</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="http://otyhab281.bkt.clouddn.com/2017-07-31-MySQL-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.PNG" alt="聚合函数"><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*当使用聚合函数进行数据的操作的时候我们还可以对相同的列名使用聚合函数*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*相同列名分组查询*/</span></span><br><span class="line">GROUP BY        <span class="comment">--对相同字段名进行聚合函数的调用</span></span><br><span class="line"><span class="comment">/*使用格式*/</span></span><br><span class="line"><span class="keyword">SELECT</span> AggregationFunction(columnName1), columnName2 <span class="keyword">FROM</span> tableName <span class="keyword">WHERE</span> condition <span class="keyword">Group</span> <span class="keyword">by</span> columnName2;</span><br></pre></td></tr></table></figure></p>
@@ -202,6 +202,7 @@ mysql> SELECT * FROM tblName LIMIT 2, 3;    /*会返回记录行3-5*/
 //如果只给定一个参数，表示返回前N个记录行
 mysql> SELECT * FROM tblName LIMIT 3;   /*返回3个记录行*/
 </pre>
+
       
 
       
@@ -316,11 +317,11 @@ mysql> SELECT * FROM tblName LIMIT 3;   /*返回3个记录行*/
   
 <nav id="article-nav">
   
-    <a href="/2017/08/01/2017-08-01-JDBC/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/01/2017-08-01-JDBCUtisl/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JDBC连接数据库
+          JDBCUtils
         
       </div>
     </a>
@@ -465,11 +466,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,10 +498,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web入门</a>
               </li>
              
@@ -509,15 +506,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">

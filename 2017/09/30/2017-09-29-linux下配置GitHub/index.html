@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/30/2017-09-29-linux下配置GitHub/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="使用Linux记录">
-<meta property="og:updated_time" content="2017-11-29T08:43:58.131Z">
+<meta property="og:updated_time" content="2017-12-17T07:51:37.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux下GitHub配置方法">
 <meta name="twitter:description" content="使用Linux记录">
@@ -174,7 +174,7 @@
 <li><p>安装Git</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br><span class="line">```  </span><br><span class="line">- 创建[GitHub](https://github.com/)帐号</span><br><span class="line">- 生成SSH Key</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br><span class="line">```  </span><br><span class="line">- 创建[GitHub](https://github.com/)帐号</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">- 生成SSH Key</span><br></pre></td></tr></table></figure>
 <p>ssh-keygen -t rsa -C “yourEmail@xxx.com”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 查看SSH-key</span><br></pre></td></tr></table></figure></p>
 <p>cd ~/.ssh<br>vim id_rsa.pub<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 回到GitHub, 鼠标悬浮在个人头像的下面， 选择setting，选择左边菜单栏中的SSH and GPG keys，点击New SSH key，出现下列界面</span><br><span class="line"></span><br><span class="line">![add SSH key](http://otyhab281.bkt.clouddn.com/2017-09-30%20addSSHKey.png)</span><br><span class="line"></span><br><span class="line">title中填写标志性的，能够提醒自己记住这是什么意思的名字</span><br><span class="line"></span><br><span class="line">key中填写生成的SSH-key(复制粘贴即可)</span><br><span class="line"></span><br><span class="line">- 检查GitHub是否连接成功</span><br></pre></td></tr></table></figure></p>
 <p>ssh -T git@github.com<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">出现&quot;You&apos;ve successfully authenticated, but GitHub does not provide shell access.&quot;则表示连接成功.</span><br><span class="line"></span><br><span class="line">- 配置Git的配置文件</span><br></pre></td></tr></table></figure></p>
@@ -443,11 +443,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,10 +475,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web入门</a>
               </li>
              
@@ -487,15 +483,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">

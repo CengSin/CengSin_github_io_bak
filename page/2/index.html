@@ -171,18 +171,10 @@
 <p><a href="https://pan.baidu.com/s/1slBggih" target="_blank" rel="noopener">百度云盘STS链接</a></p>
 <p> 密码: 2xhh</p>
 <ul>
-<li>安装STS插件</li>
-</ul>
-<p>打开Eclipse-&gt;Help-&gt;Install new softWare-&gt;Add</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/eclipse安装STS插件(1" alt="eclipse安装STS插件(1).png">.png)</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/eclipse安装STS插件(2" alt="eclipse安装STS插件(2).png">.png)</p>
-<p>之后点击finish-&gt;Next-&gt;I Accept…之后重启eclipse完成。</p>
-<h2 id="测试代码："><a href="#测试代码：" class="headerlink" title="测试代码："></a>测试代码：</h2><p><img src="http://otyhab281.bkt.clouddn.com/STS测试使用注解.png" alt="STS测试使用注解.png"></p>
-<ul>
-<li>运行结果：</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring注解对象运行结果.png" alt="Spring注解对象运行结果.png"></p>
-
+<li>安装STS插件
+        
+          <a class="article-more-a" href="/2017/11/05/2017-11-05-Spring学习日记7/#more">more >></a>
+        
       
 
       
@@ -271,59 +263,10 @@
 </ul>
 <p>首先导入4个Spring的基本包，分别是bean,context,expression,core. 之后再导入两个日志包，分别是log4j-1.2.15.jar和logging-1.1.1.jar。</p>
 <p><img src="http://otyhab281.bkt.clouddn.com/Spring%E5%AF%BC%E5%8C%85%E5%9B%BE.png" alt="spring基本包"></p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring%E6%97%A5%E5%BF%97%E5%8C%85.png" alt="spring日志包"></p>
-<p>Spring框架在4.x版本之后还需要导入一个aop包才能使用注解配置，所以再导入一个aop包</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中的aop包.png" alt="Spring中的aop包"></p>
-<ul>
-<li>向xml文档中添加xsd约束</li>
-</ul>
-<p>打开eclipse-&gt;window-&gt;Preferences-&gt;XML CataLog-&gt;Add-&gt;File System，选择约束文件</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring使用注解配置约束.png" alt="Spring使用注解配置约束.png"></p>
-<p>点击确定之后</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring使用注解配置xsd.png" alt="Spring使用注解配置xsd.png"></p>
-<p>点击apply and close.</p>
-<p>之后点击applicationContext.xml中的Design视图，右击beans标签，选择Edit NameSpace-&gt;Add<br>Specify New NameSpace-&gt;BrowSe..-&gt;Select Xml CataLog entry, 选择刚刚添加进来的约束</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/配置beans时选择约束文件.png" alt="配置beans时选择约束文件.png"></p>
-<p>之后点击Ok, 将名字配置成下图</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring配置约束文件.png" alt="Spring配置约束文件.png"></p>
-<p>点击OK完成。 之后约束文件中beans标签中出现下图</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring配置约束完成.png" alt="Spring配置约束完成.png"></p>
-<p>配置成功。</p>
-<p>之后配置xml文件，使之能够自动扫描指定包中文件的注解</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring自动扫描文件注解.png" alt="Spring自动扫描文件注解.png"></p>
-<ul>
-<li>在类中使用注解完成配置</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring使用注解.png" alt="Spring使用注解.png"></p>
-<p><code>@Component</code>的作用与xml文件中<code>bean</code>标签的作用是一样的，都是提前声明一个对象，让Spring容器启动之后去创建此对象。</p>
-<pre>
-
-@Component("user")==<bean name="user" class="info.zetile.domain.User"></bean>
-
-</pre>
-
-<hr>
-
-<ul>
-<li>设置对象的初始化销毁方法</li>
-</ul>
-<ul>
-<li>初始化方法(init_Method)：在对象创建后调用</li>
-</ul>
-<p>使用注解<code>@PostConstruct</code>来表示此方式是此对象的初始化方法</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中的注解初始化方法.png" alt="Spring中的注解初始化方法.png"></p>
-<p>运行结果:</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring注解初始化方法运行结果.png" alt="Spring注解初始化方法运行结果.png"></p>
-<ul>
-<li>销毁对象方法：在对象销毁之前调用</li>
-</ul>
-<p>使用注解<code>@PreDestory</code>来表示此方法是对象的销毁方法</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring注解销毁对象方法.png" alt="Spring注解销毁对象方法.png"></p>
-<p>此方法在对象销毁的时候才会被调用，但在<code>ApplicationContext</code>中之后在容器关闭之后才会销毁对象。但在<code>AppcalitionContext</code>中没有关闭的方法，只有在<code>ClassPathXmlApplicationContext</code>中可以关闭容器对象。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring注解销毁对象方法运行结果.png" alt="Spring注解销毁对象方法运行结果.png"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring注解对象运行结果.png" alt="Spring注解对象运行结果.png"></p>
-
+<p><img src="http://otyhab281.bkt.clouddn.com/Spring%E6%97%A5%E5%BF%97%E5%8C%85.png" alt="spring日志包"><br>
+        
+          <a class="article-more-a" href="/2017/11/03/2017-11-03-Spring学习日记6/#more">more >></a>
+        
       
 
       
@@ -408,49 +351,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Spring框架学习日记5：Spring注入类型"><a href="#Spring框架学习日记5：Spring注入类型" class="headerlink" title="Spring框架学习日记5：Spring注入类型"></a>Spring框架学习日记5：Spring注入类型</h2><h3 id="Spring中的复杂类型注入"><a href="#Spring中的复杂类型注入" class="headerlink" title="Spring中的复杂类型注入"></a>Spring中的复杂类型注入</h3><h4 id="在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的-lt-bean-gt-表示一个特别的实例，由name属性或者id属性决定。"><a href="#在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的-lt-bean-gt-表示一个特别的实例，由name属性或者id属性决定。" class="headerlink" title="在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的&lt;bean&gt;表示一个特别的实例，由name属性或者id属性决定。"></a>在Spring配置文件中，beans标签表示多个不同的对象，每一个单独的&lt;bean&gt;表示一个特别的实例，由name属性或者id属性决定。</h4><pre>
-
-&lt;beans&gt;
-
-&lt;bean name="标签名" class="类的全类名"&gt;
-    &lt;!-- 设置初始化时如果初始化对象的值是另外一个对象时，应该使用ref属性而不是value属性 --&gt;
-    &lt;property name="属性名" value="属性值"&gt;
-    &lt;/property&gt;
-
-&lt;/bean&gt;
-
-&lt;/beans&gt;
-
-</pre>
-
-<ul>
-<li>要求初始化的对象类型</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中要求初始化的对象类型.png" alt="Spring中要求初始化的对象类型.png"></p>
-<ul>
-<li>数组，List单值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入单值.png" alt="Spring复杂类型注入单值.png"></p>
-<ul>
-<li>数组多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入多值_数组.png" alt="Spring复杂类型注入多值_数组.png"></p>
-<ul>
-<li>List多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring多值注入list.png" alt="Spring多值注入list.png"></p>
-<ul>
-<li>Map多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring多值注入map.png" alt="Spring多值注入map.png"></p>
-<ul>
-<li>Properties类型多值注入</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/SPring中Property注入.png" alt="SPring中Property注入.png"></p>
-<ul>
-<li>运行结果：</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring复杂类型注入运行结果.png" alt="Spring复杂类型注入运行结果.png"></p>
-
+        
+          <a class="article-more-a" href="/2017/10/31/2017-11-01-Spring学习日记5/#more">more >></a>
+        
       
 
       
@@ -538,65 +441,9 @@
 <pre>
 
 package info.zetile.test;
-
-import org.junit.Test;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import info.zetile.domain.User;
-
-public class Demo {
-    @Test
-    public void testSpringDemo() {
-        //设置applicationContext.xml(SPring配置文件)相对于类文件的路径
-        String classPath = "applicationContext.xml";
-        //获取容器对象
-        ApplicationContext ac = new ClassPathXmlApplicationContext(classPath);
-        //使用Spring配置文件获取相应对象
-        User user = ac.getBean("user_set", User.class);
-        //输出对象，查看对象是否被初始化
-        System.out.println(user);
-    }
-}
-
-
-</pre>
-
-<ul>
-<li>set注入方式</li>
-</ul>
-<p>Spring文件中的应该填写的配置：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring配置Set注入方式.png" alt="Spring配置Set注入方式"></p>
-<p>使用此配置获得user对象初始化结果为：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中Set注入方式运行结果.png" alt="Spring中Set注入方式运行结果"></p>
-<ul>
-<li>构造函数注入方式</li>
-</ul>
-<p>Spring配置文件：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中构造注入配置文件.png" alt="Spring中构造注入配置文件"></p>
-<p>构造方法：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring构造注入中的方法.png" alt="JavaBean构造方法"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring构造注入运行结果.png" alt="运行结果"></p>
-<ul>
-<li>P命名空间注入：</li>
-</ul>
-<p>Spring配置文件：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring注入p命名空间注入配置文件.png" alt="Spring注入p命名空间注入配置文件.png"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中p命名注入运行结果.png" alt="Spring中p命名注入运行结果.png"></p>
-<ul>
-<li>spel注入（Spring Expression Language）:</li>
-</ul>
-<p>Spring配置文件：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中spel注入配置文件.png" alt="Spring中spel注入配置文件.png"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中spel注入运行结果.png" alt="Spring中spel注入运行结果.png"></p>
-<p>spel注入可以使用其他对象的属性，也可以在其中添加表达式，类似于el表达式。 例如1+2+3：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中spel中添加表达式.png" alt="配置文件"></p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中spel添加表达式之后运行结果.png" alt="运行结果"></p>
-
+        
+          <a class="article-more-a" href="/2017/10/31/2017-10-31-Spring学习日记4/#more">more >></a>
+        
       
 
       
@@ -686,65 +533,9 @@ public class Demo {
     * id: 为bean标签起一个名字，在约束中采用ID的约束：唯一
         * 必须以字母开头，可以使用字母，数字，连字符，下划线，句号，冒号
         * id中不能出现特殊字符
-    * name: 为bean标签起一个名字，没有采用ID的约束
-        * name：允许出现特殊字符
-        * 如果没有id的话，name可以当作ID使用
-        * 尽量使用name属性 
-    * class: 被管理对象的完整类名
-    &lt;bean name="user" class="info.zetile.domain.User"&gt;&lt;/bean&gt;
-
-</pre>
-
-<h3 id="Spring创建对象的方式"><a href="#Spring创建对象的方式" class="headerlink" title="Spring创建对象的方式"></a>Spring创建对象的方式</h3><ul>
-<li>空参构造的方式</li>
-</ul>
-<p>在JavaBean中添加一个无参数的构造方法，其中可以添加一条输出语句来更直观的体现此构造方法。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象-空参构造方式.png" alt="Spring创建对象-空参构造方式"></p>
-<ul>
-<li>静态工厂（代理）：</li>
-</ul>
-<p>首先添加一个工厂类UserFactory，在其中添加一个静态方法createUser用来获取User类型的实例对象。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象静态工厂.png" alt="Spring创建对象静态工厂"> </p>
-<p>之后在applicationContext.xml（Spring配置文件中添加如下代码）</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring静态代理配置.png" alt="Spring静态代理配置"></p>
-<ul>
-<li>实例工厂（动态代理）</li>
-</ul>
-<p>首先在工厂类中添加一个成员方法createUser2用来获取对象实例</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring动态代理方法.png" alt="Spring动态代理方法"></p>
-<p>之后在applicationContext.xml中配置 </p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring动态代理配置文件.png" alt="Spring动态代理配置文件"></p>
-<p>最后一次运行结果：</p>
-<p>我们只使用了实例工厂的配置，却创建了三个对象，由此可知ApplicationContext容器在启动时就会创建所有配置过的对象。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring创建对象运行结果.png" alt="运行结果"></p>
-<h3 id="Spring的分模块配置"><a href="#Spring的分模块配置" class="headerlink" title="Spring的分模块配置"></a>Spring的分模块配置</h3><p>在Spring的配置文件中可以引用其他配置文件，这也被称为Spring的分模块配置。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中导入其他配置文件.png" alt="Spring中导入其他配置文件"></p>
-<h3 id="Spring配置文件中Scope属性的取值与意义："><a href="#Spring配置文件中Scope属性的取值与意义：" class="headerlink" title="Spring配置文件中Scope属性的取值与意义："></a>Spring配置文件中Scope属性的取值与意义：</h3><h4 id="scope-’singleton’"><a href="#scope-’singleton’" class="headerlink" title="scope=’singleton’"></a>scope=’singleton’</h4><p>表示单例模式，此时由Spring只能创建一个指定对象，这个也是scope的默认值。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中scopre配置单例模式.png" alt="Spring中scopre配置单例模式.png"></p>
-<p>测试代码：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring单例模式运行代码.png" alt="Spring单例模式运行代码.png"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring单例模式运行结果.png" alt="Spring单例模式运行结果.png"></p>
-<h4 id="scope-’prototype’"><a href="#scope-’prototype’" class="headerlink" title="scope=’prototype’"></a>scope=’prototype’</h4><p>表示多例模式，此时spring可以创建多个相同类型的对象。</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中scope配置多例模式.png" alt="Spring中scope配置多例模式.png"></p>
-<p>测试代码：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中多例模式运行代码.png" alt="Spring中多例模式运行代码.png"></p>
-<p>运行结果：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring多例模式运行结果.png" alt="Spring多例模式运行结果.png"></p>
-<h4 id="scope-’request’"><a href="#scope-’request’" class="headerlink" title="scope=’request’"></a>scope=’request’</h4><p>表示web环境下，对象与request生命周期一致。</p>
-<h4 id="scope-’session’"><a href="#scope-’session’" class="headerlink" title="scope=’session’"></a>scope=’session’</h4><p>表示web环境下，对象与session生命周期一致。</p>
-<h3 id="Spring配置文件中的生命周期属性："><a href="#Spring配置文件中的生命周期属性：" class="headerlink" title="Spring配置文件中的生命周期属性："></a>Spring配置文件中的生命周期属性：</h3><ul>
-<li>init-method:</li>
-</ul>
-<p>在JavaBean中配置一个方法作为声明周期的初始化方法，spring在创建对象之后会立即调用。</p>
-<ul>
-<li>destory-method:</li>
-</ul>
-<p>在JavaBean中配置一个方法作为生命周期的校徽方法，spring在关闭并销毁容器中所有对象之前调用此方法。</p>
-<h4 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring中对象生命周期配置文件.png" alt="Spring中对象生命周期配置文件.png"></p>
-<h4 id="测试代码："><a href="#测试代码：" class="headerlink" title="测试代码："></a>测试代码：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring对象生命周期测试代码.png" alt="Spring对象生命周期测试代码.png"></p>
-<h4 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h4><p><img src="http://otyhab281.bkt.clouddn.com/Spring对象生命周期测试结果.png" alt="Spring对象生命周期测试结果.png"></p>
-
+        
+          <a class="article-more-a" href="/2017/10/31/2017-10-31-Spring学习日记3/#more">more >></a>
+        
       
 
       
@@ -829,48 +620,10 @@ public class Demo {
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Spring框架学习日记2：Spring概念"><a href="#Spring框架学习日记2：Spring概念" class="headerlink" title="Spring框架学习日记2：Spring概念"></a>Spring框架学习日记2：Spring概念</h1><h2 id="IOC-Inverse-of-Control"><a href="#IOC-Inverse-of-Control" class="headerlink" title="IOC(Inverse of Control):"></a>IOC(Inverse of Control):</h2><p>控制反转，将我们创建对象的方式反转，之前对象的创建是由开发人员自己维护，包括依赖关系也是自己注入。<br>使用spring之后，对象的创建以及依赖关系可以由spring完成创建以及注入。<br>控制反转就是反转了对象的创建方式，将对象由我们自己创建转化成为了由spring创建。</p>
-<h2 id="DI-dependency-Injection"><a href="#DI-dependency-Injection" class="headerlink" title="DI(dependency Injection):"></a>DI(dependency Injection):</h2><p>依赖注入，实现IOC思想需要DI做支持。<br>注入方式：<br></p>
-<ul>
-<li>set方法注入</li>
-<li>构造方法注入</li>
-<li>字段注入   </li>
-</ul>
-<p>注入类型：<br></p>
-<ul>
-<li>值类型注入（8种基本类型）</li>
-<li>引用注入（将依赖对象注入）</li>
-</ul>
-<h2 id="Spring中的工厂（容器）："><a href="#Spring中的工厂（容器）：" class="headerlink" title="Spring中的工厂（容器）："></a>Spring中的工厂（容器）：</h2><h3 id="ApplicationContext-amp-BeanFactory"><a href="#ApplicationContext-amp-BeanFactory" class="headerlink" title="ApplicationContext &amp; BeanFactory  :"></a>ApplicationContext &amp; BeanFactory  :</h3><h4 id="ApplicationContext接口"><a href="#ApplicationContext接口" class="headerlink" title="ApplicationContext接口:"></a>ApplicationContext接口:</h4><p><img src="http://otyhab281.bkt.clouddn.com/ApplicationContext接口.png" alt="ApplicationiContext实现类"></p>
-<h4 id="ApplicationContext中有两个实现类可以加载spring配置"><a href="#ApplicationContext中有两个实现类可以加载spring配置" class="headerlink" title="ApplicationContext中有两个实现类可以加载spring配置"></a>ApplicationContext中有两个实现类可以加载spring配置</h4><ul>
-<li>ClassPathXmlApplicationContext </li>
-<li>加载类路径下的spring配置文件（相对与类的路径）</li>
-<li>FileSystemXmlApplicationContext</li>
-<li>加载本地磁盘下的spring配置文件（硬盘下的绝对路径）</li>
-</ul>
-<p>spring配置文件的名字可以随便取名，不过为了规范和有意义的取名，大多数会叫做applicationContext.xml。</p>
-<h4 id="BeanFactory接口（过时）："><a href="#BeanFactory接口（过时）：" class="headerlink" title="BeanFactory接口（过时）："></a>BeanFactory接口（过时）：</h4><p><img src="http://otyhab281.bkt.clouddn.com/BeanFactory接口.png" alt="BeanFactory"></p>
-<ul>
-<li>BeanFactory接口是spring框架的原始接口。针对原始接口的实现类功能比较单一。</li>
-</ul>
-<h4 id="重要：BeanFactory接口和Application接口的区别："><a href="#重要：BeanFactory接口和Application接口的区别：" class="headerlink" title="重要：BeanFactory接口和Application接口的区别："></a>重要：BeanFactory接口和Application接口的区别：</h4><h5>创建对象时的不同：</h5>
-
-<ul>
-<li>BeanFactory接口实现类： 每次在要求获取对象时才回去创建对象。</li>
-<li>ApplicationContext接口实现类： 每次容器启动时会自动创建容器中配置的所有对象，并提供更多的功能。</li>
-</ul>
-<h5>接口的不同：</h5>
-
-<ul>
-<li>Application是BeanFactory的子接口，提供了相比BeanFactory更多的功能。</li>
-</ul>
-<h5 id="重要：两种容器分别在什么情况下使用？"><a href="#重要：两种容器分别在什么情况下使用？" class="headerlink" title="重要：两种容器分别在什么情况下使用？"></a>重要：两种容器分别在什么情况下使用？</h5><p>在web开发中使用ApplicationContext，在系统资源相对匮乏的情况下，使用BeanFactory。</p>
-<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><h4 id="Spring框架的核心功能有两个："><a href="#Spring框架的核心功能有两个：" class="headerlink" title="Spring框架的核心功能有两个："></a>Spring框架的核心功能有两个：<br></h4><p>Spring容器作为超级大工厂，负责创建、管理所有的Java对象，这些Java对象被称为Bean。<br><br>Spring容器管理容器中Bean之间的依赖关系，Spring使用一种被称为”依赖注入”的方式来管理Bean之间的依赖关系。<br></p>
-<p>使用依赖注入，不仅可以为Bean注入普通的属性值，还可以注入其他Bean的引用。依赖注入是一种优秀的解耦方式，其可以让Bean以配置文件组织在一起，而不是以硬编码的方式耦合在一起。<br><br>理解依赖注入<br></p>
-<p>Rod Johnson是第一个高度重视以配置文件来管理Java实例的协作关系的人，他给这种方式起了一个名字：控制反转（Inverse of Control，IoC）。后来Martine Fowler为这种方式起了另一个名称：依赖注入（Dependency Injection），因此不管是依赖注入，还是控制反转，其含义完全相同。当某个Java对象（调用者）需要调用另一个Java对象（被依赖对象）的方法时，在传统模式下通常有两种做法：<br></p>
-<p>原始做法: 调用者<strong>主动</strong>创建被依赖对象，然后再调用被依赖对象的方法。<br><br>简单工厂模式: 调用者先找到被依赖对象的工厂，然后主动通过工厂去获取被依赖对象，最后再调用被依赖对象的方法。<br></p>
-<p>注意上面的<strong>主动</strong>二字，这必然会导致调用者与被依赖对象实现类的硬编码耦合，非常不利于项目升级的维护。使用Spring框架之后，调用者无需主动获取被依赖对象，调用者只要被动接受Spring容器为调用者的成员变量赋值即可，由此可见，使用Spring后，调用者获取被依赖对象的方式由原来的主动获取，变成了被动接受——所以Rod Johnson称之为控制反转。<br></p>
-<p>另外从Spring容器的角度来看，Spring容器负责将被依赖对象赋值给调用者的成员变量——相当于为调用者注入它依赖的实例，因此Martine Fowler称之为依赖注入。<br></p>
-
+<h2 id="DI-dependency-Injection"><a href="#DI-dependency-Injection" class="headerlink" title="DI(dependency Injection):"></a>DI(dependency Injection):</h2>
+        
+          <a class="article-more-a" href="/2017/10/31/2017-10-31-Spring学习日记2/#more">more >></a>
+        
       
 
       
@@ -955,137 +708,10 @@ public class Demo {
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Spring框架学习日记1：什么是Spring"><a href="#Spring框架学习日记1：什么是Spring" class="headerlink" title="Spring框架学习日记1：什么是Spring"></a>Spring框架学习日记1：什么是Spring</h1><h2 id="什么是Spring："><a href="#什么是Spring：" class="headerlink" title="什么是Spring："></a>什么是Spring：</h2><p>Spring是一个轻量级的开源框架，起源于2003年，由Rod johnson创建。 简单来说，Spring是一个分<br>层的JavaSE/EEfull-stack(一站式)轻量级开源框架。</p>
-<h3 id="Spring的核心："><a href="#Spring的核心：" class="headerlink" title="Spring的核心："></a>Spring的核心：</h3><p>Spring是控制反转（IOC）和面向切面编程（AOP）。</p>
-<h3 id="JavaEE开发分为三层结构："><a href="#JavaEE开发分为三层结构：" class="headerlink" title="JavaEE开发分为三层结构："></a>JavaEE开发分为三层结构：</h3><ul>
-<li>WEB层：SpringMVC</li>
-<li>业务层：Bean管理（IOC）</li>
-<li>持久层：Spring的JDBC模版.ORM模版用于整合其他的持久层框架</li>
-</ul>
-<h3 id="为什么学习Spring："><a href="#为什么学习Spring：" class="headerlink" title="为什么学习Spring："></a>为什么学习Spring：</h3><ol>
-<li>方便解耦，简化开发<ol>
-<li>可以将所有的对象创建和依赖关系维护交给Spring管理。</li>
-</ol>
-</li>
-<li>AOP（面向切面编程）的支持<ol>
-<li>Spring提供面向切面编程，可以方便的实现对程序进行权限拦截，运行监控等功能。  </li>
-</ol>
-</li>
-<li>声明式事务的支持<ol>
-<li>只需要通过配置就可以完成对事物的管理，而无需手动编程。</li>
-</ol>
-</li>
-<li>方便程序的额测试<ol>
-<li>Spring对Junit4支持，可以通过注解方便的测试Spring程序。</li>
-</ol>
-</li>
-<li>方便集成各种优秀框架<ol>
-<li>Spring不排斥各种优秀的框架，其内部提供了对各种优秀的框架（如：Structs, Hibernate, MyBatis, Quartz等）的直接支持。</li>
-</ol>
-</li>
-<li>降低JavaEEAPI的使用难度<ol>
-<li>Spring对JavaEE开发中一些非常难用的APi（JDBC, JavaMail, 远程调用等），都提供了封装，使这些APi的使用难度大幅降低。  </li>
-</ol>
-</li>
-</ol>
-<h2 id="IOC的底层实现原理"><a href="#IOC的底层实现原理" class="headerlink" title="IOC的底层实现原理"></a>IOC的底层实现原理</h2><p>传统方式开发：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/传统开发方式.png" alt="传统开发方式"></p>
-<p><img src="http://otyhab281.bkt.clouddn.com/传统开发方式1.png" alt="传统开发方式1">   </p>
-<p>IOC(Inversion of Control) 控制反转：指的是 对象的创建权反转（交给）Spring.<br>作用是实现了程序的解耦合。</p>
-<h2 id="第一个Spring项目"><a href="#第一个Spring项目" class="headerlink" title="第一个Spring项目"></a>第一个Spring项目</h2><p>首先创建一个Web工程，之后在其WebContent文件夹下的WEB-INF文件夹下的lib文件夹中导入Spring的核心包</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="Spring结构图"></p>
-<p>由图可知，Spring的核心包分为四类： Beans Core Context SpEL(expression)</p>
-<p>所以导入以下四个包就可以了</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring导包图.png" alt="Spring结构图"></p>
-<h3 id="导入日志包"><a href="#导入日志包" class="headerlink" title="导入日志包"></a>导入日志包</h3><p>因为Spring老版本会多一个依赖包，所以也一起导入进来</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring日志包.png" alt="日志包"></p>
-<h3 id="创建一个JavaBean"><a href="#创建一个JavaBean" class="headerlink" title="创建一个JavaBean"></a>创建一个JavaBean</h3><pre>
-
-package info.zetile.domain;
-
-public class User {
-
-    private String name;
-    private Integer age;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-}
-
-
-</pre>
-
-<h3 id="书写配置，注册对象到容器"><a href="#书写配置，注册对象到容器" class="headerlink" title="书写配置，注册对象到容器"></a>书写配置，注册对象到容器</h3><ol>
-<li>在项目的src文件下创建一个xml文件（applicationContext.xml）</li>
-<li>导入约束(Eclipse-&gt;Window-&gt;Preferences-&gt;XML CataLog-&gt;Add-&gt;File System)</li>
-</ol>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring导入bean约束.png" alt="导入约束"></p>
-<ul>
-<li>之后在applicationContext.xml文件中写入beans标签</li>
-</ul>
-<pre>
-
-&lt;xml version="1.0" encoding="UTF-8"&gt;
-
-&lt;bean&gt;
-&lt;/bean&gt;
-
-</pre>
-
-<ul>
-<li>之后在<code>Design</code>界面右击bean标签，选择Edit NameSpace..</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring添加约束1.png" alt=""></p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring添加约束2.png" alt=""></p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring添加约束3.png" alt=""></p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring添加约束4.png" alt=""></p>
-<ul>
-<li>之后变成这样就可以了</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring完成添加约束.png" alt=""></p>
-<ul>
-<li>将User对象交给Spring容器管理</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring中注册bean对象.png" alt="Spring容器管理对象"></p>
-<h3 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h3><pre>
-
-import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import info.zetile.domain.User;
-
-public class Demo {
-    @Test
-    public void testSpringDemo() {
-        String classPath = "applicationContext.xml";
-        //1. 创建ApplicationContext容器对象
-        ApplicationContext ac = new ClassPathXmlApplicationContext(classPath);
-        //2. 从容器中获取user的实例对象
-        User user = (User) ac.getBean("user");
-        //3. 输出User对象
-        System.out.println(user);
-    }
-}
-
-</pre>
-
-<p><img src="http://otyhab281.bkt.clouddn.com/Spring测试获取类对象.png" alt="Spring测试获取类对象"></p>
-<p>此处的路径是相对于src文件夹的路径。</p>
-
+<h3 id="Spring的核心："><a href="#Spring的核心：" class="headerlink" title="Spring的核心："></a>Spring的核心：</h3>
+        
+          <a class="article-more-a" href="/2017/10/30/2017-10-30-Spring学习日记1/#more">more >></a>
+        
       
 
       
@@ -1173,278 +799,10 @@ public class Demo {
 <ul>
 <li>布尔类型（boolean）</li>
 <li>字符类型 (char)</li>
-<li>整数类型（int, long, byte, short）</li>
-<li>浮点数类型（float, double）  </li>
-</ul>
-<h2 id="jQuery中的内置对象"><a href="#jQuery中的内置对象" class="headerlink" title="jQuery中的内置对象"></a>jQuery中的内置对象</h2><p>JSP之中的九大内置对象:</p>
-<ul>
-<li>request      HttpServletRequest的实例</li>
-<li>response   HttpServletResponse的实例<ul>
-<li>out    JspWriter的实例，用于把结果输出到网页上</li>
-<li>sessionHttpSession的实例</li>
-</ul>
-</li>
-<li>application   ServletContext的实例，与应用的上下文有关<ul>
-<li>configServletConfig类的实例</li>
-</ul>
-</li>
-<li>pageContext    PageContext类的实例，提供对JSP所有对象以及命名空间的访问</li>
-<li>page  类似与java之中的this关键字<ul>
-<li>exception    Exception类的对象，代表了发生错误的JSp页面中的异常对象</li>
-</ul>
-</li>
-</ul>
-<p>详细介绍：<a href="http://zetile.info/blog/2017/09/26/JSP_EL_JSTL%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%92%8C%E4%BA%86%E8%A7%A3(%E4%B8%80" target="_blank" rel="noopener">JSP的九大内置对象</a>/)</p>
-<h2 id="jQuery中的标签选择器"><a href="#jQuery中的标签选择器" class="headerlink" title="jQuery中的标签选择器"></a>jQuery中的标签选择器</h2><ul>
-<li><p>基础选择器</p>
-<ul>
-<li>根据ID选择元素  $(“#id”)</li>
-<li>根据元素标签选择 $(“div”)</li>
-<li>根据类名选择  $(“.myClass”)</li>
-<li><ul>
-<li>全选</li>
-</ul>
-</li>
-<li>选择多个类型 $(“div,span,p.myClass”)</li>
-</ul>
-</li>
-<li><p>层级选择器</p>
-<ul>
-<li>在给定的祖先元素下匹配所有的后代元素 $(“ancestor descendant”)    </li>
-<li>在给定的父元素下匹配所有子元素 $(“parent&gt;child”)</li>
-<li>匹配跟在前一个元素之后的所有元素 $(“pre+child”)</li>
-<li>匹配pre的所有兄弟元素 $(“pre~sibling”)</li>
-</ul>
-</li>
-<li><p>过滤选择器</p>
-<ul>
-<li>获取匹配的第一个元素  $(“li”).first()<ul>
-<li>first</li>
-</ul>
-</li>
-<li>获取匹配的最后一个元素  $(“li”).last()<ul>
-<li>last</li>
-</ul>
-</li>
-<li>去除所有与给定元素匹配的元素 $(“input:not(:checked)”)<ul>
-<li>:not</li>
-</ul>
-</li>
-<li>返回索引值为偶数的元素  $(“tr:even”)<ul>
-<li>:even</li>
-</ul>
-</li>
-<li>返回索引值为奇数的元素 $(“tr:odd”)<ul>
-<li>:odd</li>
-</ul>
-</li>
-<li>匹配一个给定索引值的元素 $(“tr:eq(1)”)<ul>
-<li>:eq</li>
-</ul>
-</li>
-<li>匹配所有大于索引值的元素 $(“tr:gt(2)”)<ul>
-<li>:gt</li>
-</ul>
-</li>
-<li>匹配所有小于索引值的元素 $(“tr:lt(2)”)<ul>
-<li>:lt</li>
-</ul>
-</li>
-<li>匹配类似于h1, h2, h3之类的标题元素 $(“:header”).css(“background”, “#EEE”)<ul>
-<li>:header</li>
-<li>匹配所有正在执行动画效果的元素</li>
-<li>$(“#run”).click(function(){<br>$(“div:not(:animated)”).animate({ left: “+=20” }, 1000);<br>});</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="同步和异步的区别"><a href="#同步和异步的区别" class="headerlink" title="同步和异步的区别"></a>同步和异步的区别</h2><pre><code>同步和异步的区别：在当前页面中，当用户点击了某一个控件之后，同步会等待后台数据处理完毕之后才会允许用户执行下一个动作，而异步则回同时允许用户执行多个动作，每个动作之间互不干扰。
-</code></pre><h2 id="线程安全的问题"><a href="#线程安全的问题" class="headerlink" title="线程安全的问题"></a>线程安全的问题</h2><p>线程安全就是说多线程访问同一代码，不会产生不确定的结果。编写线程安全的代码是低依靠线程同步。</p>
-<p>临界资源：各进程采取互斥的方式，实现共享的资源称作临界资源。属于临界资源的硬件有打印机、磁带机等,软件有消息缓冲队列、变量、数组、缓冲区等。 诸进程间应采取互斥方式，实现对这种资源的共享。</p>
-<p>临界区：每个进程中访问临界资源的那段代码称为临界区。显然，若能保证诸进程互斥地进入自己的临界区，便可实现诸进程对临界资源的互斥访问。为此，每个进程在进入临界区之前，应先对欲访问的临界资源进行检查，看它是否正被访问。如果此刻该临界资源未被访问，进程便可进入临界区对该资源进行访问，并设置它正被访问的标志；如果此刻该临界资源正被某进程访问，则本进程不能进入临界区。</p>
-<h2 id="死锁的预防"><a href="#死锁的预防" class="headerlink" title="死锁的预防"></a>死锁的预防</h2><h3 id="死锁的定义："><a href="#死锁的定义：" class="headerlink" title="死锁的定义："></a>死锁的定义：</h3><p>多线程以及多进程改善了系统资源的利用率并提高了系统 的处理能力。然而，并发执行也带来了新的问题——死锁。所谓死锁是指多个线程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些进程都将无法向前推进。</p>
-<h3 id="死锁产生的必要条件："><a href="#死锁产生的必要条件：" class="headerlink" title="死锁产生的必要条件："></a>死锁产生的必要条件：</h3><p>产生死锁必须同时满足以下四个条件，只要其中任一条件不成立，死锁就不会发生。</p>
-<p><hr></p>
-<ol>
-<li>互斥条件：进程要求对所分配的资源（如打印机）进行排他性控制，即在一段时间内某 资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。</li>
-<li>不剥夺条件：进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能 由获得该资源的进程自己来释放（只能是主动释放)。</li>
-<li>请求和保持条件：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源 已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。</li>
-<li>循环等待条件：存在一种进程资源的循环等待链，链中每一个进程已获得的资源同时被 链中下一个进程所请求。</li>
-</ol>
-<h3 id="如何避免死锁："><a href="#如何避免死锁：" class="headerlink" title="如何避免死锁："></a>如何避免死锁：</h3><p>在有些情况下死锁是可以避免的。三种用于避免死锁的技术：</p>
-<ol>
-<li>加锁顺序（线程按照一定的顺序加锁）</li>
-<li>加锁时限（线程尝试获取锁的时候加上一定的时限，超过时限则放弃对该锁的请求，并释放自己占有的锁）</li>
-<li>死锁检测</li>
-</ol>
-<h3 id="如何预防死锁"><a href="#如何预防死锁" class="headerlink" title="如何预防死锁"></a>如何预防死锁</h3><ol>
-<li>破坏“互斥”条件<br>就是在系统里取消互斥。若资源不被一个进程独占使用，那么死锁是肯定不会发生的。<br>但一般来说在所列的四个条件中，“互斥”条件是无法破坏的。因此，在死锁预防里主要是破坏其他几个必要条件，而不去涉及破坏“互斥”条件。</li>
-<li>破坏“占有并等待”条件<br>破坏“占有并等待”条件，就是在系统中不允许进程在已获得某种资源的情况下，申请其他资源。即要想出一个办法，阻止进程在持有资源的同时申请其他资源。<br>方法一：<br>创建进程时，要求它申请所需的全部资源，系统或满足其所有要求，或什么也不给它。这是所谓的 “ 一次性分配”方案。<br>方法二：<br>要求每个进程提出新的资源申请前，释放它所占有的资源。这样，一个进程在需要资源S时，须先把它先前占有的资源R释放掉，然后才能提出对S的申请，即使它可能很快又要用到资源R。<br>破坏“不可抢占”条件</li>
-<li>破坏“不可抢占”条件就是允许对资源实行抢夺。<br>方法一：如果占有某些资源的一个进程进行进一步资源请求被拒绝，则该进程必须释放它最初占有的资源，如果有必要，可再次请求这些资源和另外的资源。<br>方法二：如果一个进程请求当前被另一个进程占有的一个资源，则操作系统可以抢占另一个进程，要求它释放资源。只有在任意两个进程的优先级都不相同的条件下，方法二才能预防死锁。[1] </li>
-<li>破坏“循环等待”条件<br>破坏“循环等待”条件的一种方法，是将系统中的所有资源统一编号，进程可在任何时刻提出资源申请，但所有申请必须按照资源的编号顺序（升序）提出。这样做就能保证系统不出现死锁。</li>
-</ol>
-<h2 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h2><table><br><tbody><br><tr><br><td valign="top" width="166"><strong>参数</strong></td><br><td valign="top" width="220"><strong>抽象类</strong></td><br><td valign="top" width="166"><strong>接口</strong></td><br></tr><br><tr><br><td valign="top" width="166">默认的方法实现</td><br><td valign="top" width="220">它可以有默认的方法实现</td><br><td valign="top" width="166">接口完全是抽象的。它根本不存在方法的实现</td><br></tr><br><tr><br><td valign="top" width="166">实现</td><br><td valign="top" width="220">子类使用<strong>extends</strong>关键字来继承抽象类。如果子类不是抽象类的话，它需要提供抽象类中所有声明的方法的实现。</td><br><td valign="top" width="166">子类使用关键字<strong>implements</strong>来实现接口。它需要提供接口中所有声明的方法的实现</td><br></tr><br><tr><br><td valign="top" width="166">构造器</td><br><td valign="top" width="220">抽象类可以有构造器</td><br><td valign="top" width="166">接口不能有构造器</td><br></tr><br><tr><br><td valign="top" width="166">与正常Java类的区别</td><br><td valign="top" width="220">除了你不能实例化抽象类之外，它和普通Java类没有任何区别</td><br><td valign="top" width="166">接口是完全不同的类型</td><br></tr><br><tr><br><td valign="top" width="166">访问修饰符</td><br><td valign="top" width="220">抽象方法可以有<strong>public</strong>、<strong>protected</strong>和<strong>default</strong>这些修饰符</td><br><td valign="top" width="166">接口方法默认修饰符是<strong>public</strong>。你不可以使用其它修饰符。</td><br></tr><br><tr><br><td valign="top" width="166">main方法</td><br><td valign="top" width="220">抽象方法可以有main方法并且我们可以运行它</td><br><td valign="top" width="166">接口没有main方法，因此我们不能运行它。</td><br></tr><br><tr><br><td valign="top" width="166">多继承</td><br><td valign="top" width="220">抽象方法可以继承一个类和实现多个接口</td><br><td valign="top" width="166">接口只可以继承一个或多个其它接口</td><br></tr><br><tr><br><td valign="top" width="166">速度</td><br><td valign="top" width="220">它比接口速度要快</td><br><td valign="top" width="166">接口是稍微有点慢的，因为它需要时间去寻找在类中实现的方法。</td><br></tr><br><tr><br><td valign="top" width="166">添加新方法</td><br><td valign="top" width="220">如果你往抽象类中添加新的方法，你可以给它提供默认的实现。因此你不需要改变你现在的代码。</td><br><td valign="top" width="166">如果你往接口中添加方法，那么你必须改变实现该接口的类。</td><br></tr><br></tbody><br></table>
-
-<h1 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a><a href="http://www.importnew.com/12399.html" target="_blank" rel="noopener">原文链接</a></h1><h2 id="重写和重载的区别"><a href="#重写和重载的区别" class="headerlink" title="重写和重载的区别"></a>重写和重载的区别</h2><h3 id="重写："><a href="#重写：" class="headerlink" title="重写："></a>重写：</h3><p>是将方法的方法体重新写一种新的处理方式，重写方法和被重写方法拥有相同的方法名，参数列表和返回值。</p>
-<h3 id="重载："><a href="#重载：" class="headerlink" title="重载："></a>重载：</h3><p>重载方法和被重载的方法拥有相同的方法名，不同的方法体，参数列表和返回值。</p>
-<h2 id="java中的动态代理和静态代理"><a href="#java中的动态代理和静态代理" class="headerlink" title="java中的动态代理和静态代理"></a>java中的动态代理和静态代理</h2><p><a href="http://zetile.info/blog/2017/10/31/Spring%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B03/" target="_blank" rel="noopener">参见此博客中的新建对象</a></p>
-<h2 id="AOP和IOC是什么"><a href="#AOP和IOC是什么" class="headerlink" title="AOP和IOC是什么"></a>AOP和IOC是什么</h2><p>Spring框架中的名词AOP，面向切面编程。</p>
-<p>Spring中的名词IOC，控制反转</p>
-<hr>
-
-<h2 id="10-30-Update"><a href="#10-30-Update" class="headerlink" title="10-30 Update"></a>10-30 Update</h2><h2 id="Ajax中文乱码问题的解决"><a href="#Ajax中文乱码问题的解决" class="headerlink" title="Ajax中文乱码问题的解决"></a>Ajax中文乱码问题的解决</h2><pre>
-
-$.ajax({
-    url: testUrl,
-    dataType: "json",
-    type: "post",
-    scriptCharset: "utf-8"
-});
-
-</pre>
-
-<p>使用<code>scriptCharset</code>即可解决问题。</p>
-<h2 id="java中的null问题"><a href="#java中的null问题" class="headerlink" title="java中的null问题"></a>java中的null问题</h2><pre>
-
-public class Test {
-
-
-    public void showStr(Object o) {
-        System.out.println("my Object!");
-    }
-
-    public void showStr(String o) {
-        System.out.println("my String!");
-    }
-    //换成其他类型会报错, 只有Object和String不会报错， 并且输出MyString
-
-    public static void showString() {
-        System.out.println("static Function");
-    }
-
-    public static void main(String[] args) {
-        new Test().showStr(null);
-        Test t = null;
-        //静态方法可以被空对象引用调用
-        t.showString();
-    }
-
-}
-
-</pre>
-
-<p><img src="http://otyhab281.bkt.clouddn.com/null参与运算.png" alt="null参与运算"></p>
-<h2 id="java中有两种异常，分别是什么？"><a href="#java中有两种异常，分别是什么？" class="headerlink" title="java中有两种异常，分别是什么？"></a>java中有两种异常，分别是什么？</h2><ul>
-<li>分别是运行时异常和编译期异常。</li>
-</ul>
-<h2 id="多进程系统中，多个进程之间存在什么关系？"><a href="#多进程系统中，多个进程之间存在什么关系？" class="headerlink" title="多进程系统中，多个进程之间存在什么关系？"></a>多进程系统中，多个进程之间存在什么关系？</h2><ul>
-<li>同步，互斥</li>
-</ul>
-<h2 id="ACID是什么？"><a href="#ACID是什么？" class="headerlink" title="ACID是什么？"></a>ACID是什么？</h2><ul>
-<li>原子性（Atomicity）</li>
-</ul>
-<p>原子性是指事务要么全部成功提交，要么全部失败回滚。事务的操作如果成功就要全部应用到数据库，否则就不能对数据库造成任何影响。</p>
-<ul>
-<li>一致性（Consistency）</li>
-</ul>
-<p>一致性是指事务必须是数据库必须使数据库从一个一致性状态切换到另一个一致性的状态。</p>
-<ul>
-<li>隔离性（Isolation）</li>
-</ul>
-<p>隔离性是指当多个用户同时访问数据库时，数据库为每一个用户开启的一个事务，多个事务之间互不干扰。</p>
-<ul>
-<li>持久性（Durability）</li>
-</ul>
-<p>持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的，即使数据库遇到故障的情况下也不会丢失提交数据库的操作。</p>
-<h2 id="过滤流"><a href="#过滤流" class="headerlink" title="过滤流"></a>过滤流</h2><p>过滤流：使用节点流作为输入或者输出。过滤流是使用一个已经存在的输入流或者输出流连接创建的。</p>
-<p>节点流：从特定的地方读写的流类，例如，磁盘的一块内存区域。</p>
-<p>FileInputStream/FileOutputStream: 节点流，用于从文件中读取或者往文件中写入字符流，如果在构造FileOutputStream的时候文件已经存在的话，则覆盖这个文件。</p>
-<p>BufferedInputStream/BufferedOutputStream: 过滤流，需要使用已经存在的节点来构造，提供了带有缓冲的读写，提高了读写的效率。</p>
-<p>DataInputStream/DataOutputStream: 过滤流，需要使用已经存在的节点流来构造，提供了读写java中基本类型的读写功能。</p>
-<p>PipedInputStream/PipedOutputStream: 管道流，用于线程间的通信，一个线程的PipedInputStream对象从另一个线程的PipedOutputStream对象读取输入。 要使管道流有用，必须同时构造管道输入流和管道输出流。</p>
-<h2 id="遍历一个文件夹下面的所有子文件和子文件夹"><a href="#遍历一个文件夹下面的所有子文件和子文件夹" class="headerlink" title="遍历一个文件夹下面的所有子文件和子文件夹"></a>遍历一个文件夹下面的所有子文件和子文件夹</h2><pre>
-
-public class OutputFileName {
-
-    public static void main(String[] args) {
-        String path = new String();
-        Scanner in = new Scanner(System.in);
-        path = in.nextLine();
-
-        outputFileName(new File(path));
-
-        in.close();
-    }
-
-    private static void outputFileName(File f) {        
-        System.out.println(f.getName());
-        if(f.isDirectory()) {
-            File[] listFiles = f.listFiles();
-            for (File file : listFiles) {
-                outputFileName(file);
-            }
-        }else {
-            return ;
-        }
-    }
-
-}
-
-</pre>
-
-<hr>
-
-<h2 id="11-1-Update"><a href="#11-1-Update" class="headerlink" title="11.1 Update"></a>11.1 Update</h2><h2 id="Java中Collection和Collections的区别？"><a href="#Java中Collection和Collections的区别？" class="headerlink" title="Java中Collection和Collections的区别？"></a>Java中Collection和Collections的区别？</h2><ul>
-<li>Collection: 是一个接口，是大部分集合类的原始接口，如List和Set。 接口不能实例化。</li>
-<li>Collections: 这个类完全由静态方法组成，包括对集合进行操作的多种算法和返回指定的子集，这个类也不能实例化。</li>
-</ul>
-<h2 id="11-8-Update"><a href="#11-8-Update" class="headerlink" title="11.8 Update"></a>11.8 Update</h2><h3 id="Linux中查看线程的命令是-PS-a"><a href="#Linux中查看线程的命令是-PS-a" class="headerlink" title="Linux中查看线程的命令是: PS -a"></a>Linux中查看线程的命令是: PS -a</h3><h3 id="Tomcat，MySQL，Redis的端口号分别是什么？"><a href="#Tomcat，MySQL，Redis的端口号分别是什么？" class="headerlink" title="Tomcat，MySQL，Redis的端口号分别是什么？"></a>Tomcat，MySQL，Redis的端口号分别是什么？</h3><ul>
-<li>Tomcat的端口号是8080</li>
-<li>MySQL的端口号是3306</li>
-<li>Redis的端口号是6379</li>
-</ul>
-<h3 id="向上造型和向下造型："><a href="#向上造型和向下造型：" class="headerlink" title="向上造型和向下造型："></a>向上造型和向下造型：</h3><ul>
-<li>向上造型：父类引用指向子类对象</li>
-<li>向下造型：子类引用指向父类对象，在使用的时候需要<code>instanceof</code>判断是否子类才能将父类对象强制转换为子类对象。</li>
-</ul>
-<h3 id="Class-forName-的作用："><a href="#Class-forName-的作用：" class="headerlink" title="Class.forName() 的作用："></a>Class.forName() 的作用：</h3><p><strong>Class.forName：</strong>返回与给定的字符串名称相关联<strong>类</strong>或<strong>接口</strong>的Class对象。</p>
-<p><strong>Class.forName</strong>是一个静态方法，相同能够用来载入类。</p>
-<h3 id="Redis的存储类型有那些？"><a href="#Redis的存储类型有那些？" class="headerlink" title="Redis的存储类型有那些？"></a>Redis的存储类型有那些？</h3><blockquote>
-<p> String，List，Set，Hash类型</p>
-</blockquote>
-<h3 id="线程的特点？"><a href="#线程的特点？" class="headerlink" title="线程的特点？"></a>线程的特点？</h3><ol>
-<li>轻型实体：线程的实体基本上不占用系统资源，只有一点必不可少，能保证独立运行的系统资源，是花费开销最少的实体。</li>
-<li>独立调度和分派的基本单位</li>
-<li>可并发执行</li>
-<li>共享进程资源</li>
-</ol>
-<h3 id="单例模式的优点："><a href="#单例模式的优点：" class="headerlink" title="单例模式的优点："></a>单例模式的优点：</h3><ul>
-<li>Spring单例模式（Singleton）</li>
-</ul>
-<p>单例模式，在Spring中其实都是scope(作用范围)参数的缺省设定值，每个bean定义只生成一个对象实例，每次getBean请求获得的都是此实例。</p>
-<ul>
-<li>单例模式分为懒汉模式和饿汉模式<ul>
-<li>饿汉模式：<ul>
-<li>Spring singleton的默认模式是饿汉模式：启动容器时，为所有spring配置文件中的bean都生成一个实例。</li>
-</ul>
-</li>
-<li>懒汉模式：<ul>
-<li>在第一个请求时才生成实例，以后的请求都调用这个实例，设置为懒汉模式应该加上</li>
-<li><code>&lt;bean default-lazy-init&gt;=&quot;true&quot;</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>单例模式的优点：安全，不容易发生内存泄漏。</li>
-</ul>
-<hr>
-
-<p>HashMap允许键值都为null</p>
-<p>数组的长度使用的是<code>arr.length</code>属性，字符串的长度使用的是<code>str.length()</code>方法。</p>
-<p>分页操作：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tb_name <span class="keyword">limit</span> 当前页，每一页的数量;</span><br></pre></td></tr></table></figure>
-
+<li>整数类型（int, long, byte, short）
+        
+          <a class="article-more-a" href="/2017/10/25/2017-10-25-面试问题/#more">more >></a>
+        
       
 
       
@@ -1533,98 +891,10 @@ public class OutputFileName {
 <li>框架的作用： 框架是用来提高开发效率的。</li>
 <li>框架封装好了一些功能，当需要这些功能的时候调用即可，不必再手动实现。</li>
 </ul>
-<p><strong>Hibernate</strong>框架是用来帮助操作数据库的，在操作数据库的同时不必再编写sql语句，可以直接使用面向对象的方式来完成。</p>
-<p><strong>Hibernate</strong>是一款ORM框架(object relating mapping)，ORM框架分为4级，dbUtils属于1级，mybatis属于2级，Hibernate属于4级。</p>
-<h2 id="Hibernate框架的搭建"><a href="#Hibernate框架的搭建" class="headerlink" title="Hibernate框架的搭建"></a>Hibernate框架的搭建</h2><ul>
-<li>导包</li>
-</ul>
-<p>Hibernate需要的jar包：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate导包截图.png" alt="导jar包"></p>
-<p>Mysql数据库连接需要的jar包：</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Mysql数据库jar包.png" alt="MysqlJar"></p>
-<ul>
-<li>创建数据库</li>
-<li>准备表，实体</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/创建HibernateDemo数据库1.png" alt="databases"></p>
-<ul>
-<li><p>书写orm元数据(对象与表的映射配置文件)</p>
-<ol>
-<li>导入dtd约束文件</li>
-</ol>
-</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate添加dtd文件.png" alt="Hibernate导入dtd文件"></p>
-<pre><code>2.  创建JavaBean对象
-</code></pre><p><img src="http://otyhab281.bkt.clouddn.com/创建包.png" alt="package"></p>
-<p><img src="http://otyhab281.bkt.clouddn.com/创建实体.png" alt="package"></p>
-<pre><code>3. 配置映射文件
-</code></pre><p>在项目的domain包中新建一个<font color="red">类名</font>.hbm.xml文件</p>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate映射文件.png" alt="Hibernate映射文件"></p>
-<ul>
-<li>class标签</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate中的Class标签.png" alt="Class标签"></p>
-<ul>
-<li>id标签</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate中的id标签.png" alt="id标签"></p>
-<ul>
-<li>Property标签</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate中的property标签.png" alt="id标签"></p>
-<h2 id="Hibernate的核心配置文件"><a href="#Hibernate的核心配置文件" class="headerlink" title="Hibernate的核心配置文件"></a>Hibernate的核心配置文件</h2><p>在项目的src文件下新建一个hibernate.cfg.xml文件</p>
-<ul>
-<li>xml进行声明：</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Xml声明文件.png" alt="Hibernate的核心配置文件"></p>
-<ul>
-<li>配置文件的dtd信息</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/文件的dtd信息.png" alt="文件的dtd信息"></p>
-<ul>
-<li>Hibernate配置文件</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate配置信息.png" alt="Hibernate配置文件"></p>
-<ul>
-<li>Hibernate配置文件的一些常用属性：</li>
-</ul>
-<p><img src="http://otyhab281.bkt.clouddn.com/Hibernate常用属性.png" alt="常用属性"></p>
-<p>测试HibernateDemo： </p>
-<p>向数据库中插入一些数据：</p>
-<pre> 
-
-public class HibernateDemo1 {
-
-    @Test
-    /**
-     * 使用Hibernate保存数据
-     */
-    public void demo1() {
-        //1. 加载配置文件
-        Configuration cfg = new Configuration().configure();
-        //2. 创建一个SessionFactory
-        SessionFactory sessionFactory = cfg.buildSessionFactory();
-        //3. 创建Session对象.Session对象 类似Connection
-        Session session = sessionFactory.openSession();
-        //4. 开启事物
-        Transaction tx = session.beginTransaction();
-        //5. 执行相关操作
-        Customer customer = new Customer();
-        customer.setCust_name("小王");
-        customer.setCust_source("网络推广");
-
-        session.save(customer);
-        //6. 事物提交
-        tx.commit();
-        //7. 释放资源
-        session.close();
-    }
-}
-
-</pre>
-
-
+<p><strong>Hibernate</strong>框架是用来帮助操作数据库的，在操作数据库的同时不必再编写sql语句，可以直接使用面向对象的方式来完成。<br>
+        
+          <a class="article-more-a" href="/2017/10/23/2017-10-23-Hibernate框架的学习1/#more">more >></a>
+        
       
 
       
@@ -1714,7 +984,7 @@ public class HibernateDemo1 {
 <li><p>安装Git</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br><span class="line">```  </span><br><span class="line">- 创建[GitHub](https://github.com/)帐号</span><br><span class="line">- 生成SSH Key</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br><span class="line">```  </span><br><span class="line">- 创建[GitHub](https://github.com/)帐号</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">- 生成SSH Key</span><br></pre></td></tr></table></figure>
 <p>ssh-keygen -t rsa -C “yourEmail@xxx.com”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 查看SSH-key</span><br></pre></td></tr></table></figure></p>
 <p>cd ~/.ssh<br>vim id_rsa.pub<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 回到GitHub, 鼠标悬浮在个人头像的下面， 选择setting，选择左边菜单栏中的SSH and GPG keys，点击New SSH key，出现下列界面</span><br><span class="line"></span><br><span class="line">![add SSH key](http://otyhab281.bkt.clouddn.com/2017-09-30%20addSSHKey.png)</span><br><span class="line"></span><br><span class="line">title中填写标志性的，能够提醒自己记住这是什么意思的名字</span><br><span class="line"></span><br><span class="line">key中填写生成的SSH-key(复制粘贴即可)</span><br><span class="line"></span><br><span class="line">- 检查GitHub是否连接成功</span><br></pre></td></tr></table></figure></p>
 <p>ssh -T git@github.com<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">出现&quot;You&apos;ve successfully authenticated, but GitHub does not provide shell access.&quot;则表示连接成功.</span><br><span class="line"></span><br><span class="line">- 配置Git的配置文件</span><br></pre></td></tr></table></figure></p>
@@ -1892,11 +1162,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1924,10 +1194,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web入门</a>
               </li>
              
@@ -1936,15 +1202,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">

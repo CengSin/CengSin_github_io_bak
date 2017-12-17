@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://otyhab281.bkt.clouddn.com/%E5%88%9B%E5%BB%BA%E4%BA%A7%E5%93%81%E8%A1%A8%E6%A0%BC.PNG">
 <meta property="og:image" content="http://otyhab281.bkt.clouddn.com/%E5%A4%9A%E5%AF%B9%E5%A4%9A%E8%A1%A8%E6%A0%BC%E5%BB%BA%E7%AB%8B%E8%81%94%E7%B3%BB.PNG">
 <meta property="og:image" content="http://otyhab281.bkt.clouddn.com/%E5%A4%96%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%86%85%E8%BF%9E%E6%8E%A5%E5%9B%BE%E7%89%87.png">
-<meta property="og:updated_time" content="2017-11-29T08:43:58.128Z">
+<meta property="og:updated_time" content="2017-12-17T07:51:37.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL多表查询">
 <meta name="twitter:description" content="MySQL多表查询">
@@ -179,7 +179,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1>MySQL多表查询</h1><br><ul><br>    <li><br>        <h2><br>        <a href="https://dev.mysql.com/doc/refman/5.7/en/create-table-foreign-keys.html" target="_blank" rel="noopener">MySQL外键</a><br>        (foreign key)<br>        </h2><br>    </li><br>    <li><br>        MySQL外键：<br><br>            在MySQL中通过<code>foreign key</code>y约束定义外键,定义语句为:<br>            <pre><br>                ALTER TABLE 表名 ADD <a href="FK Name">constraint</a> FOREIGN KEY (colName) REFERENCES 关联的表名(关联的字段名);<br>                /<em>[FK Name] 用于删除外键约束, 一般建议fk结尾</em>/<br>                ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;<br>            </pre><br>    </li><br>    <li><br>        使用外键的目的：<br><br>            <ul><br>                <li>保证拓展数据的一致性</li><br>            </ul><br>    </li><br></ul><br><br>例：我们首先创建两个表<code>student</code>和<code>grade</code><br><br>创建<code>Student</code><br><br><img src="http://otyhab281.bkt.clouddn.com/MySQL%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E5%88%9B%E5%BB%BA%E5%AD%A6%E7%94%9F%E8%A1%A8.PNG" alt="studentTable"><br><br>创建<code>Grade</code><br><br><img src="http://otyhab281.bkt.clouddn.com/MySQL%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E5%88%9B%E5%BB%BAgrade%E8%A1%A8%E6%A0%BC.PNG" alt="GradeTable"><br><br>设置<code>student.sid</code>为<code>grade</code>的外键<br><br><img src="http://otyhab281.bkt.clouddn.com/MySQL%E5%88%9B%E5%BB%BA%E5%A4%96%E9%94%AE.PNG" alt="FOREIGN_KEY"><br><br>向<code>student</code>中插入数据<br><br><img src="http://otyhab281.bkt.clouddn.com/%E5%90%91%E5%AD%A6%E7%94%9F%E8%A1%A8%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE.PNG" alt="Insert_Student"><br><br>向<code>grade</code>表中插入<code>Student</code>不存在的<code>sid</code><br><br><img src="http://otyhab281.bkt.clouddn.com/%E5%90%91%E6%88%90%E7%BB%A9%E8%A1%A8%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE.PNG" alt="InsertGrade"><br><br>可以看到MySQL提示错误 <span style="color:red"><u>Cannot add or update a child row: a foreign key constraint fails (‘web09’….)…</u></span><br><br>这里出现错误的原因是<mark>因为向<code>grade</code>中插入的是<code>student</code>中没有的<code>sid</code></mark>。<br><br><h2>外键的特点：</h2><br><br><ul><br>    <li><br>        从表外键是对主表主键的引用<br>    </li><br>    <li><br>        从表外键类型必须和主表主键类型一致<br>    </li><br></ul><br><br><hr><br><br><h1>表和表之间的关系</h1>
+        <h1>MySQL多表查询</h1><br><ul><br>    <li><br>        <h2><br>        <a href="https://dev.mysql.com/doc/refman/5.7/en/create-table-foreign-keys.html" target="_blank" rel="noopener">MySQL外键</a><br>        (foreign key)<br>        </h2><br>    </li><br>    <li><br><a id="more"></a><br>        MySQL外键：<br><br>            在MySQL中通过<code>foreign key</code>y约束定义外键,定义语句为:<br>            <pre><br>                ALTER TABLE 表名 ADD <a href="FK Name">constraint</a> FOREIGN KEY (colName) REFERENCES 关联的表名(关联的字段名);<br>                /<em>[FK Name] 用于删除外键约束, 一般建议fk结尾</em>/<br>                ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;<br>            </pre><br>    </li><br>    <li><br>        使用外键的目的：<br><br>            <ul><br>                <li>保证拓展数据的一致性</li><br>            </ul><br>    </li><br></ul><br><br>例：我们首先创建两个表<code>student</code>和<code>grade</code><br><br>创建<code>Student</code><br><br><img src="http://otyhab281.bkt.clouddn.com/MySQL%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E5%88%9B%E5%BB%BA%E5%AD%A6%E7%94%9F%E8%A1%A8.PNG" alt="studentTable"><br><br>创建<code>Grade</code><br><br><img src="http://otyhab281.bkt.clouddn.com/MySQL%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E5%88%9B%E5%BB%BAgrade%E8%A1%A8%E6%A0%BC.PNG" alt="GradeTable"><br><br>设置<code>student.sid</code>为<code>grade</code>的外键<br><br><img src="http://otyhab281.bkt.clouddn.com/MySQL%E5%88%9B%E5%BB%BA%E5%A4%96%E9%94%AE.PNG" alt="FOREIGN_KEY"><br><br>向<code>student</code>中插入数据<br><br><img src="http://otyhab281.bkt.clouddn.com/%E5%90%91%E5%AD%A6%E7%94%9F%E8%A1%A8%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE.PNG" alt="Insert_Student"><br><br>向<code>grade</code>表中插入<code>Student</code>不存在的<code>sid</code><br><br><img src="http://otyhab281.bkt.clouddn.com/%E5%90%91%E6%88%90%E7%BB%A9%E8%A1%A8%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE.PNG" alt="InsertGrade"><br><br>可以看到MySQL提示错误 <span style="color:red"><u>Cannot add or update a child row: a foreign key constraint fails (‘web09’….)…</u></span><br><br>这里出现错误的原因是<mark>因为向<code>grade</code>中插入的是<code>student</code>中没有的<code>sid</code></mark>。<br><br><h2>外键的特点：</h2><br><br><ul><br>    <li><br>        从表外键是对主表主键的引用<br>    </li><br>    <li><br>        从表外键类型必须和主表主键类型一致<br>    </li><br></ul><br><br><hr><br><br><h1>表和表之间的关系</h1>
 
 <p></p><h2>一对多关系</h2><br>一对多关系建表原则:<br><small>在从表(字段多方)创建一个字段，该字段作为外键指向主表(字段少的一方)中的主键</small><p></p>
 <p></p><h2>多对多关系</h2><br>多对多关系建表原则：<br><small>需要创建第三张表，中间表至少两个字段，这两个字段分别作为外键指向各自一方的主键</small><p></p>
@@ -220,6 +220,7 @@
 </ul>
 <p>查询姓名为张三的学生的性别</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sex <span class="keyword">FROM</span> sexTbl <span class="keyword">WHERE</span> student_id=(<span class="keyword">SELECT</span> student_id <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> sname=<span class="string">'张三'</span>);</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -483,11 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,10 +516,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web入门</a>
               </li>
              
@@ -527,15 +524,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
