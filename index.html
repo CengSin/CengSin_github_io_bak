@@ -232,24 +232,9 @@
         <h1 id="ArangoDB数据库建立三节点集群"><a href="#ArangoDB数据库建立三节点集群" class="headerlink" title="ArangoDB数据库建立三节点集群"></a>ArangoDB数据库建立三节点集群</h1><p>首先在不同的节点上分别安装好ArangoDB，之后分别检查端口  8528,8529,8530,8531  是否被占用，如果被占用，检查该进程是否可以杀死。如果可以，就把占用这些端口的进程分别杀死。</p>
 <p>查看指定端口的占用情况：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br><span class="line">netstat -apn | grep port</span><br></pre></td></tr></table></figure>
-<p>杀死进程的命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 process</span><br></pre></td></tr></table></figure>
-<p>之后查看内存是否残余有ArangoDB的进程</p>
-<p>查看ArangoDB进程命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep arangodb</span><br></pre></td></tr></table></figure>
-<p>如果还有残余进程，就<code>kill</code>掉.</p>
-<p>之后新建一个目录作为服务器文件的存储目录</p>
-<p>新建目录命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir floderPathAndName</span><br></pre></td></tr></table></figure>
-<p>之后进入新建的文件夹中，运行下列命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arangodb --starter.join firstNodeIp,secondNodeIp,thirdNodeIp</span><br></pre></td></tr></table></figure>
-<p>第一个节点运行命令之后会自动等待其他两台节点运行此命令，此时不要动此窗口，新建一个远程窗口，分别执行此命令，之后三台节点会提示dbServer starting。此时就可以登陆<a href="http://IPAdderss:8529进入web界面了。" target="_blank" rel="noopener">http://IPAdderss:8529进入web界面了。</a></p>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB_web界面.png" alt="ArangoDB_web界面.png"></p>
-<h2 id="Node"><a href="#Node" class="headerlink" title="Node:"></a>Node:</h2><p>如果以后服务器崩溃了，必须在刚刚新建的目录中使用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arangodb --starter.join firstNodeIp,secondNodeIp,thirdNodeIp</span><br></pre></td></tr></table></figure>
-<p>重新启动数据库，如果在其他的目录中启动的话，之前的数据库都会消失不见。如果忘记自己之前是在哪个文件夹中存放ArangoDB数据的话，可以找<code>agent,coordinator,dbserver</code>这三个文件夹，他们的存放位置就是ArangoDB的存放位置。直接在该目录中运行上面的命令。</p>
-<p>如果数据库崩溃的话一般要看看内存是否太小，硬盘容量是否够用，不清楚错误是什么的情况下首先看看节点的硬件配置是否能支撑如此大数据量的运行。</p>
-
+        
+          <a class="article-more-a" href="/2017/12/14/ArangoDB搭建集群/#more">more >></a>
+        
       
 
       
@@ -337,144 +322,9 @@
 <li>基本关键字</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FOR: array iteration</span><br><span class="line">RETURN: results projection</span><br><span class="line">FILTER: results filtering</span><br><span class="line">SORT: result sorting</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">LIMIT: result slicing</span><br><span class="line">LET: variable assignment</span><br><span class="line">COLLECT: result grouping</span><br><span class="line">INSERT: insertion of new documents</span><br><span class="line">UPDATE: (partial) update of existing documents</span><br><span class="line">REPLACE: replacement of existing documents</span><br><span class="line">REMOVE: removal of existing documents</span><br><span class="line">UPSERT: insertion or update of existing documents</span><br></pre></td></tr></table></figure>
-<ul>
-<li>所有的关键字</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">AGGREGATE</span><br><span class="line">ALL</span><br><span class="line">AND</span><br><span class="line">ANY</span><br><span class="line">ASC</span><br><span class="line">COLLECT</span><br><span class="line">DESC</span><br><span class="line">DISTINCT</span><br><span class="line">FALSE</span><br><span class="line">FILTER</span><br><span class="line">FOR</span><br><span class="line">GRAPH</span><br><span class="line">IN</span><br><span class="line">INBOUND</span><br><span class="line">INSERT</span><br><span class="line">INTO</span><br><span class="line">LET</span><br><span class="line">LIMIT</span><br><span class="line">NONE</span><br><span class="line">NOT</span><br><span class="line">NULL</span><br><span class="line">OR</span><br><span class="line">OUTBOUND</span><br><span class="line">REMOVE</span><br><span class="line">REPLACE</span><br><span class="line">RETURN</span><br><span class="line">SHORTEST_PATH</span><br><span class="line">SORT</span><br><span class="line">TRUE</span><br><span class="line">UPDATE</span><br><span class="line">UPSERT</span><br><span class="line">WITH</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>AQL中变量名不能和关键字重名，如果变量名与关键字重名的话，必须用反引号把变量名括起来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; FOR doc IN TestCollections</span><br><span class="line">&gt;   RETURN doc.`attribute`</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>AQL对于关键字大小写不敏感，对于集合，属性，变量，方法的名字大小写敏感</p>
-<p>AQL支持的名字最大只能占<code>64 bytes</code>.</p>
-<p>一条AQL语句中最多只能查询256个集合</p>
-<p>AQL允许用户将值分配给查询中的其他变量。所有分配了值的变量必须在查询的上下文中具有唯一的名称。变量名称必须与同一查询中使用的任何集合名称的名称不同。</p>
-<p>变量名称中的允许字符是字母<em>a</em>到<em>z</em>（大写和小写），数字<em>0</em>到<em>9</em>，下划线（<em>_</em>）符号和美元符号（<em>$</em>）。变量名称不能以数字开头。如果变量名以下划线字符开头，则下划线后面必须至少有一个字母（az或AZ）或数字（0-9）。</p>
-<p>美元符号只能用作变量名中的第一个字符。</p>
-</blockquote>
-<h3 id="AQL中的查询"><a href="#AQL中的查询" class="headerlink" title="AQL中的查询"></a>AQL中的查询</h3><ul>
-<li>查询所有语句</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FOR doc IN @@collection</span><br><span class="line">	RETURN doc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>过滤查询</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FOR doc IN @@collection</span><br><span class="line">  FILTER doc.`attribute` == @value</span><br><span class="line">  RETURN doc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>限制结果集的数量</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FOR doc IN @@collection</span><br><span class="line">  LIMIT @offset, @count</span><br><span class="line">  RETURN doc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>内联查询</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FOR doc1 IN @@collection1</span><br><span class="line">  FOR doc2 IN @@collection2</span><br><span class="line">    FILTER doc1.`attribute` == doc2.`attribute`</span><br><span class="line">    RETURN &#123; doc1, doc2 &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>随机排序之后查询</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FOR doc IN @@collection</span><br><span class="line">  SORT RAND()</span><br><span class="line">  LIMIT 1</span><br><span class="line">  RETURN doc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>指定某一规则进行排序之后查询(默认为升序ASC)</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FOR doc IN @@collection</span><br><span class="line">  SORT doc.attribute DESC //可以改成降序</span><br><span class="line">  LIMIT 1</span><br><span class="line">  RETURN doc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>多级查询</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FOR doc IN @@collection</span><br><span class="line">  LET values = (</span><br><span class="line">    FOR s IN doc.`attribute`</span><br><span class="line">      FILTER s.`attribute` == @value</span><br><span class="line">      RETURN s</span><br><span class="line">  )</span><br><span class="line">  FILTER LENGTH(values) &gt; @count</span><br><span class="line">  RETURN &#123;</span><br><span class="line">    doc,</span><br><span class="line">    values</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>规定范围查询</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FOR year IN 2010..2015</span><br><span class="line">  RETURN year</span><br></pre></td></tr></table></figure>
-<ul>
-<li>转义字符使用反斜杠转义</li>
-<li>查询中的逻辑判断符包括<code>==</code> ，<code>&gt;=</code>，<code>&lt;=</code>，<code>!=</code>，<code>&gt;</code>，<code>&lt;</code></li>
-</ul>
-<h2 id="AQL中的插入："><a href="#AQL中的插入：" class="headerlink" title="AQL中的插入："></a>AQL中的插入：</h2><ul>
-<li>插入数据</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> &#123; <span class="keyword">name</span>: <span class="string">"James Hendrix"</span>, age: <span class="number">69</span> &#125; <span class="keyword">INTO</span> UsersDemo</span><br></pre></td></tr></table></figure>
-<ul>
-<li>插入数据之后立马返回插入的数据</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> &#123; <span class="keyword">name</span>: <span class="string">"James Hendrix"</span>, age: <span class="number">69</span> &#125; <span class="keyword">INTO</span> UsersDemo <span class="keyword">RETURN</span> <span class="keyword">NEW</span></span><br></pre></td></tr></table></figure>
-<p>花括号{ }  表示文件，或者说是对象。我们所说的文件是指集合中的记录。当用JSON编码时，我们叫它对象。对象也可以嵌套。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> &#123;<span class="string">"name"</span>: &#123;<span class="string">"first"</span>: <span class="string">"Katie"</span>, <span class="string">"last"</span>: <span class="string">"Foster"</span>&#125;&#125; <span class="keyword">INTO</span> UsersDemo</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>插入数据时如果不指定插入数据的<code>_key</code>，<code>ArangoDB</code>会自动生成一个随机数来为<code>_key</code>赋值</p>
-<p><code>INTO</code>指定更新那个<code>DOCUMENT</code></p>
-</blockquote>
-<h2 id="AQL中的修改语句"><a href="#AQL中的修改语句" class="headerlink" title="AQL中的修改语句"></a>AQL中的修改语句</h2><ul>
-<li>更新数据</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="string">"9915"</span> <span class="keyword">WITH</span> &#123; age: <span class="number">40</span> &#125; <span class="keyword">IN</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>更新数据并返回（NEW是一个伪变量）</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="string">"9915"</span> <span class="keyword">WITH</span> &#123; age: <span class="number">40</span> &#125; <span class="keyword">IN</span> <span class="keyword">users</span> <span class="keyword">RETURN</span> <span class="keyword">NEW</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB_Update语句.png" alt="ArangoDB_Update语句.png"></p>
-<p>运行结果：</p>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB_Update运行结果.png" alt="ArangoDB_Update运行结果.png"></p>
-<ul>
-<li>替换数据</li>
-</ul>
-<blockquote>
-<p>REPLACE, 会移除所有属性 (除了 _key 与 _id 保持不变) 并且仅添加部分属性和属性值. </p>
-<p>UPDATE 更新指定的属性的值而保持其他属性不变.</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REPLACE</span> <span class="string">"9866"</span> <span class="keyword">WITH</span> &#123;age:<span class="number">88</span>, <span class="keyword">name</span>:<span class="string">"wangxiansheng"</span>&#125; <span class="keyword">IN</span> UsersDemo</span><br></pre></td></tr></table></figure>
-<ul>
-<li>替换数据并返回</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REPLACE</span> <span class="string">"9866"</span> <span class="keyword">WITH</span> &#123;age:<span class="number">60</span>, <span class="keyword">name</span>:<span class="string">"heitu"</span>, sex:<span class="string">"男"</span>&#125; <span class="keyword">IN</span> UsersDemo <span class="keyword">RETURN</span> <span class="keyword">NEW</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB_Replace语句.png" alt="ArangoDB_Replace语句.png"></p>
-<blockquote>
-<p><code>IN</code>指定代替的<code>DOCUMENT</code></p>
-</blockquote>
-<h2 id="AQL中的函数"><a href="#AQL中的函数" class="headerlink" title="AQL中的函数"></a>AQL中的函数</h2><ul>
-<li><code>DOCUMENT</code>函数</li>
-</ul>
-<blockquote>
-<p>DOCUMENT() 函数会根据你提供的_keys或者_ids返回一系列或者单个文档。</p>
-</blockquote>
-<p>我们管返回的结果叫做查询结果，它是一个数组，包含了我们的文档查询结果（我们可能会得到不只一个文档，但是即使只有一个文档结果，它仍然会返回最上层的数组）。这种类型的查询称为数据访问查询。</p>
-<ul>
-<li>使用<code>DOCUMENT</code>返回单个查询结果</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RETURN DOCUMENT("UsersDemo/1001")</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用<code>DOCUMENT</code>返回多个查询结果</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RETURN DOCUMENT(["UsersDemo/1001", "UsersDemo/1002", "UsersDemo/1002"])</span><br></pre></td></tr></table></figure>
-<h2 id="一次查询多个属性"><a href="#一次查询多个属性" class="headerlink" title="一次查询多个属性"></a>一次查询多个属性</h2><ul>
-<li>查询多个属性</li>
-</ul>
-<blockquote>
-<p>将return语句中的<code>{}</code>改为<code>()</code></p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for user in UsersDemo</span><br><span class="line">    return concat(user.name,  user.age)</span><br></pre></td></tr></table></figure>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB多个属性查询2.png" alt="ArangoDB多个属性查询2.png"></p>
-<ul>
-<li>修改<code>view</code>的列名</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for user in UsersDemo</span><br><span class="line">    return &#123;userName: user.name , age: user.age&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB多个属性查询.png" alt="aArangoDB多个属性查询.png"></p>
-<blockquote>
-<p>修改视图中的列名，可以显示多个属性</p>
-</blockquote>
-<h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for user in UsersDemo</span><br><span class="line">    return concat(user.name, "'s age is ",  user.age)</span><br></pre></td></tr></table></figure>
-<p><img src="http://p09lqtmdg.bkt.clouddn.com/ArangoDB字符串拼接.png" alt="ArangoDB字符串拼接.png"></p>
-<blockquote>
-<p>CONCAT() 是一个将元素合并为字符串的函数</p>
-</blockquote>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FOR user IN users</span><br><span class="line">	FILTER user.name=="lisi"</span><br><span class="line">	REMOVE user IN users</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REMOVE "_key" IN users</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除所有数据</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FOR user IN users</span><br><span class="line">	REMOVE user IN users</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2017/12/01/2017-12-01-ArangoDB使用/#more">more >></a>
+        
       
 
       
@@ -1087,19 +937,19 @@
 
 
   
-    <article id="post-2017-11-05-Spring学习日记7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2017-11-05-Spring学习日记8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/05/2017-11-05-Spring学习日记7/">Spring框架学习日记7：安装STS插件&amp;Spring与junit整合测试</a>
+      <a class="article-title" href="/2017/11/05/2017-11-05-Spring学习日记8/">Spring框架学习日记8：Spring中的AOP</a>
     </h1>
   
 
         
-        <a href="/2017/11/05/2017-11-05-Spring学习日记7/" class="archive-article-date">
+        <a href="/2017/11/05/2017-11-05-Spring学习日记8/" class="archive-article-date">
   	<time datetime="2017-11-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-05</time>
 </a>
         
@@ -1107,15 +957,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Spring框架学习日记7：安装STS插件-amp-Spring与junit整合测试"><a href="#Spring框架学习日记7：安装STS插件-amp-Spring与junit整合测试" class="headerlink" title="Spring框架学习日记7：安装STS插件&amp;Spring与junit整合测试"></a>Spring框架学习日记7：安装STS插件&amp;Spring与junit整合测试</h2><ul>
-<li>下载STS插件</li>
+        <h2 id="Spring框架学习日记8：Spring中的AOP"><a href="#Spring框架学习日记8：Spring中的AOP" class="headerlink" title="Spring框架学习日记8：Spring中的AOP"></a>Spring框架学习日记8：Spring中的AOP</h2><h2 id="Spring中的AOP原理"><a href="#Spring中的AOP原理" class="headerlink" title="Spring中的AOP原理"></a>Spring中的AOP原理</h2><ul>
+<li>动态代理（优先）</li>
 </ul>
-<p><a href="https://pan.baidu.com/s/1slBggih" target="_blank" rel="noopener">百度云盘STS链接</a></p>
-<p> 密码: 2xhh</p>
+<p>被代理对象必须首先实现接口，才能产生代理对象，如果没有接口将不能使用动态代理技术。</p>
 <ul>
-<li>安装STS插件
+<li>cglib代理（没有接口）
         
-          <a class="article-more-a" href="/2017/11/05/2017-11-05-Spring学习日记7/#more">more >></a>
+          <a class="article-more-a" href="/2017/11/05/2017-11-05-Spring学习日记8/#more">more >></a>
         
       
 
@@ -1150,7 +999,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/05/2017-11-05-Spring学习日记7/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/05/2017-11-05-Spring学习日记8/">展开全文 >></a>
         </p>
       
 
@@ -1281,11 +1130,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1309,11 +1158,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
