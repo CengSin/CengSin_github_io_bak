@@ -237,6 +237,98 @@
 
 
   
+    <article id="post-2017-11-05-Spring学习日记8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/05/2017-11-05-Spring学习日记8/">Spring框架学习日记8：Spring中的AOP</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/05/2017-11-05-Spring学习日记8/" class="archive-article-date">
+  	<time datetime="2017-11-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring框架学习日记8：Spring中的AOP"><a href="#Spring框架学习日记8：Spring中的AOP" class="headerlink" title="Spring框架学习日记8：Spring中的AOP"></a>Spring框架学习日记8：Spring中的AOP</h2><h2 id="Spring中的AOP原理"><a href="#Spring中的AOP原理" class="headerlink" title="Spring中的AOP原理"></a>Spring中的AOP原理</h2><ul>
+<li>动态代理（优先）</li>
+</ul>
+<p>被代理对象必须首先实现接口，才能产生代理对象，如果没有接口将不能使用动态代理技术。</p>
+<ul>
+<li>cglib代理（没有接口）
+        
+          <a class="article-more-a" href="/2017/11/05/2017-11-05-Spring学习日记8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring学习日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/05/2017-11-05-Spring学习日记8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2017-11-03-Spring学习日记6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -957,101 +1049,6 @@ package info.zetile.test;
 
 
   
-    <article id="post-2017-09-29-linux下配置GitHub" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/30/2017-09-29-linux下配置GitHub/">linux下GitHub配置方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/30/2017-09-29-linux下配置GitHub/" class="archive-article-date">
-  	<time datetime="2017-09-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="linux下GitHub配置方法"><a href="#linux下GitHub配置方法" class="headerlink" title="linux下GitHub配置方法"></a>linux下GitHub配置方法</h1><ul>
-<li><p>系统版本：Ubuntu 16.04LTS  </p>
-</li>
-<li><p>安装Git</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br><span class="line">```  </span><br><span class="line">- 创建[GitHub](https://github.com/)帐号</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">- 生成SSH Key</span><br></pre></td></tr></table></figure>
-<p>ssh-keygen -t rsa -C “yourEmail@xxx.com”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 查看SSH-key</span><br></pre></td></tr></table></figure></p>
-<p>cd ~/.ssh<br>vim id_rsa.pub<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 回到GitHub, 鼠标悬浮在个人头像的下面， 选择setting，选择左边菜单栏中的SSH and GPG keys，点击New SSH key，出现下列界面</span><br><span class="line"></span><br><span class="line">![add SSH key](http://otyhab281.bkt.clouddn.com/2017-09-30%20addSSHKey.png)</span><br><span class="line"></span><br><span class="line">title中填写标志性的，能够提醒自己记住这是什么意思的名字</span><br><span class="line"></span><br><span class="line">key中填写生成的SSH-key(复制粘贴即可)</span><br><span class="line"></span><br><span class="line">- 检查GitHub是否连接成功</span><br></pre></td></tr></table></figure></p>
-<p>ssh -T git@github.com<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">出现&quot;You&apos;ve successfully authenticated, but GitHub does not provide shell access.&quot;则表示连接成功.</span><br><span class="line"></span><br><span class="line">- 配置Git的配置文件</span><br></pre></td></tr></table></figure></p>
-<p>git config –global user.name “your name”    //你的用户名<br>git config –global user.email “your email”    //你的邮箱地址<br>```</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/30/2017-09-29-linux下配置GitHub/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1145,6 +1142,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
@@ -1154,10 +1155,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1173,15 +1170,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DbUtils</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
+                <a href="javascript:void(0)" class="js-tag color3">DbUtils</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1189,11 +1182,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web入门</a>
+                <a href="javascript:void(0)" class="js-tag color5">c3p0</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
+                <a href="javascript:void(0)" class="js-tag color1">web入门</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1210,6 +1203,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring学习日记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JSP&El&JSTL</a>
               </li>
              
               <li class="article-tag-list-item">
